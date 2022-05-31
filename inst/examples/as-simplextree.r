@@ -11,3 +11,10 @@ g <- igraph::graph(c(1,2, 2,3, 1,3, 3,4))
 plot(g)
 st_g <- as_simplextree(g)
 plot(st_g)
+
+# convert a network object
+el <- data.frame(tails = c(1, 2, 1, 3), heads = c(2, 3, 3, 4))
+n <- network::network.edgelist(el, network::network.initialize(4))
+plot(n)
+st_n <- as_simplextree(n)
+plot(st_n)

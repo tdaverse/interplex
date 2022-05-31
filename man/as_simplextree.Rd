@@ -4,6 +4,7 @@
 \alias{as_simplextree}
 \alias{as_simplextree.default}
 \alias{as_simplextree.igraph}
+\alias{as_simplextree.network}
 \title{Convert objects to class "simplextree"}
 \usage{
 as_simplextree(x, ...)
@@ -11,6 +12,8 @@ as_simplextree(x, ...)
 \method{as_simplextree}{default}(x, ...)
 
 \method{as_simplextree}{igraph}(x, ...)
+
+\method{as_simplextree}{network}(x, ...)
 }
 \arguments{
 \item{x}{An R object to be coerced. See Details.}
@@ -37,4 +40,11 @@ g <- igraph::graph(c(1,2, 2,3, 1,3, 3,4))
 plot(g)
 st_g <- as_simplextree(g)
 plot(st_g)
+
+# convert a network object
+el <- data.frame(tails = c(1, 2, 1, 3), heads = c(2, 3, 3, 4))
+n <- network::network.edgelist(el, network::network.initialize(4))
+plot(n)
+st_n <- as_simplextree(n)
+plot(st_n)
 }

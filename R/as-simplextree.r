@@ -43,3 +43,17 @@ as_simplextree.igraph <- function(x, ...) {
   res$insert(el)
   res
 }
+
+#' @rdname as_simplextree
+#' @export
+as_simplextree.network <- function(x, ...) {
+  
+  # convert to an igraph object
+  x <- intergraph::asIgraph(x, ...)
+  
+  # insert all edges into a new simplicial complex
+  res <- simplextree::simplex_tree()
+  el <- apply(igraph::as_edgelist(x), 1L, function(y) y, simplify = FALSE)
+  res$insert(el)
+  res
+}

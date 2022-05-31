@@ -2,4 +2,5 @@
 
 S3method(as_simplextree,default)
 S3method(as_simplextree,igraph)
+S3method(as_simplextree,network)
 export(as_simplextree)
