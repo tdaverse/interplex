@@ -1,0 +1,8 @@
+# ignore
+^ignore$
+
+# R project
+^README\.Rmd$
+^LICENSE\.md$
+^.*\.Rproj$
+^\.Rproj\.user$
