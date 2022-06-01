@@ -28,7 +28,11 @@ This generic function...
 }
 \examples{
 # convert a TDA filtration object
-rf <- TDA::ripsFiltration(TDA::circleUnif(4L), maxdimension = 2L, maxscale = 1)
+t <- 2 * pi * c(0, 1, 3, 6) / 7
+rf <- TDA::ripsFiltration(
+  cbind(x = cos(t), y = sin(t)),
+  maxdimension = 2L, maxscale = 1.7
+)
 print(rf$cmplx)
 st_rf <- as_simplextree(rf)
 plot(st_rf)
