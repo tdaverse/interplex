@@ -5,20 +5,26 @@ rf <- TDA::ripsFiltration(
   maxdimension = 2L, maxscale = 1.7
 )
 print(rf$cmplx)
-st_rf <- as_simplextree(rf)
-print(st_rf)
-st_rf2 <- as_simplextree(rf$cmplx)
-print(st_rf2)
+ig_rf <- as_igraph(rf)
+print(ig_rf)
+ig_rf2 <- as_igraph(rf$cmplx)
+print(ig_rf2)
+
+# convert a simplextree object
+st <- simplextree::simplex_tree()
+st$insert(list(1:3, 4:5, 6))
+ig_st <- as_igraph(st)
+print(ig_st)
 
 # convert an igraph object
 g <- igraph::graph(c(1,2, 2,3, 1,3, 3,4))
 print(g)
-st_g <- as_simplextree(g)
-print(st_g)
+ig_g <- as_igraph(g)
+print(ig_g)
 
 # convert a network object
 el <- data.frame(tails = c(1, 2, 1, 3), heads = c(2, 3, 3, 4))
 n <- network::network.edgelist(el, network::network.initialize(4))
 print(n)
-st_n <- as_simplextree(n)
-print(st_n)
+ig_n <- as_igraph(n)
+print(ig_n)

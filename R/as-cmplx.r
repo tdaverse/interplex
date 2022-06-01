@@ -12,20 +12,8 @@ as_cmplx <- function(x, ...) UseMethod("as_cmplx")
 #' @rdname as_cmplx
 #' @export
 as_cmplx.default <- function(x, ...) {
-  
-  # extract simplicial complex from TDA package filtration
-  if (! is.null(names(x)) &&
-      all(names(x) == c("cmplx", "values", "increasing", "coordinates"))) {
-    warning("Taking `cmplx` element as the simplicial complex.")
-    x <- x$cmplx
-  }
-  
-  # ensure that input is a list of numeric vectors
-  stopifnot(
-    typeof(x) == "list",
-    all(unique(vapply(x, typeof, "")) %in% c("integer", "numeric")),
-    all(unlist(x) %% 1 == 0)
-  )
+  x <- ensure_cmplx(x)
+  x <- ensure_list(x)
   
   # return list
   x
@@ -33,7 +21,7 @@ as_cmplx.default <- function(x, ...) {
 
 #' @rdname as_cmplx
 #' @export
-as_cmplx.simplextree <- function(x, ...) {
+as_cmplx.Rcpp_SimplexTree <- function(x, ...) {
   
   # extract list of fixed-dimension simplex matrices
   simps <- x$as_list()
@@ -45,8 +33,8 @@ as_cmplx.simplextree <- function(x, ...) {
 
 #' @rdname as_cmplx
 #' @export
-as_cmplx.Rcpp_SimplexTree <- function(x, ...) {
-  as_cmplx.simplextree(x, ...)
+as_cmplx.simplextree <- function(x, ...) {
+  as_cmplx.Rcpp_SimplexTree(x, ...)
 }
 
 #' @rdname as_cmplx

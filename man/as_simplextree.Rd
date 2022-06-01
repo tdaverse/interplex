@@ -3,13 +3,19 @@
 \name{as_simplextree}
 \alias{as_simplextree}
 \alias{as_simplextree.default}
+\alias{as_simplextree.Rcpp_SimplexTree}
+\alias{as_simplextree.simplextree}
 \alias{as_simplextree.igraph}
 \alias{as_simplextree.network}
-\title{Convert objects to class "simplextree"}
+\title{Convert objects to class 'simplextree'}
 \usage{
 as_simplextree(x, ...)
 
 \method{as_simplextree}{default}(x, ...)
+
+\method{as_simplextree}{Rcpp_SimplexTree}(x, ...)
+
+\method{as_simplextree}{simplextree}(x, ...)
 
 \method{as_simplextree}{igraph}(x, ...)
 
@@ -21,7 +27,7 @@ as_simplextree(x, ...)
 \item{...}{Additional arguments passed to methods.}
 }
 \value{
-An object of class "simplextree".
+An object of class 'simplextree'.
 }
 \description{
 This generic function...
@@ -35,20 +41,20 @@ rf <- TDA::ripsFiltration(
 )
 print(rf$cmplx)
 st_rf <- as_simplextree(rf)
-plot(st_rf)
+print(st_rf)
 st_rf2 <- as_simplextree(rf$cmplx)
-plot(st_rf2)
+print(st_rf2)
 
 # convert an igraph object
 g <- igraph::graph(c(1,2, 2,3, 1,3, 3,4))
-plot(g)
+print(g)
 st_g <- as_simplextree(g)
-plot(st_g)
+print(st_g)
 
 # convert a network object
 el <- data.frame(tails = c(1, 2, 1, 3), heads = c(2, 3, 3, 4))
 n <- network::network.edgelist(el, network::network.initialize(4))
-plot(n)
+print(n)
 st_n <- as_simplextree(n)
-plot(st_n)
+print(st_n)
 }

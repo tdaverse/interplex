@@ -3,8 +3,8 @@
 \name{as_cmplx}
 \alias{as_cmplx}
 \alias{as_cmplx.default}
-\alias{as_cmplx.simplextree}
 \alias{as_cmplx.Rcpp_SimplexTree}
+\alias{as_cmplx.simplextree}
 \alias{as_cmplx.igraph}
 \alias{as_cmplx.network}
 \title{Convert simplicial complex objects to lists in the TDA package style}
@@ -13,9 +13,9 @@ as_cmplx(x, ...)
 
 \method{as_cmplx}{default}(x, ...)
 
-\method{as_cmplx}{simplextree}(x, ...)
-
 \method{as_cmplx}{Rcpp_SimplexTree}(x, ...)
+
+\method{as_cmplx}{simplextree}(x, ...)
 
 \method{as_cmplx}{igraph}(x, ...)
 
@@ -51,14 +51,14 @@ print(cp_st)
 
 # convert an igraph object
 g <- igraph::graph(c(1,2, 2,3, 1,3, 3,4))
-plot(g)
+print(g)
 cp_g <- as_cmplx(g)
 print(cp_g)
 
 # convert a network object
 el <- data.frame(tails = c(1, 2, 1, 3), heads = c(2, 3, 3, 4))
 n <- network::network.edgelist(el, network::network.initialize(4))
-plot(n)
+print(n)
 cp_n <- as_cmplx(n)
 print(cp_n)
 }
