@@ -10,7 +10,7 @@ print(cp_rf)
 
 # convert a simplextree object
 st <- simplextree::simplex_tree()
-st$insert(list(1:3, 4:5, 6))
+st$insert(list(3:5, 5:6, 8))
 cp_st <- as_cmplx(st)
 print(cp_st)
 

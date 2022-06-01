@@ -29,17 +29,19 @@ as_igraph.default <- function(x, ...) {
 #' @export
 as_igraph.Rcpp_SimplexTree <- function(x, ...) {
   
+  # store vertex IDs
+  x_vid <- as.integer(x$vertices)
   # create graph from vertex and edge data
   res <- igraph::graph(
-    edges = as.vector(t(x$edges)),
-    n = max(x$vertices),
+    edges = as.vector(rbind(
+      match(x$edges[, 1L], x_vid),
+      match(x$edges[, 2L], x_vid)
+    )),
+    n = length(x$vertices),
     directed = FALSE
   )
-  
-  # delete vertices missing from `x`
-  # -+- need to do this -+-
-  
-  res
+  # add vertex IDs as an attribute
+  igraph::set_vertex_attr(res, "index", value = x_vid)
 }
 
 #' @rdname as_igraph

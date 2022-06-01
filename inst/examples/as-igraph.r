@@ -12,15 +12,9 @@ print(ig_rf2)
 
 # convert a simplextree object
 st <- simplextree::simplex_tree()
-st$insert(list(1:3, 4:5, 6))
+st$insert(list(3:5, 5:6, 8))
 ig_st <- as_igraph(st)
 print(ig_st)
-
-# convert an igraph object
-g <- igraph::graph(c(1,2, 2,3, 1,3, 3,4))
-print(g)
-ig_g <- as_igraph(g)
-print(ig_g)
 
 # convert a network object
 el <- data.frame(tails = c(1, 2, 1, 3), heads = c(2, 3, 3, 4))
