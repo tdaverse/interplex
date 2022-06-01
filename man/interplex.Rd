@@ -32,5 +32,6 @@ in \link[network:network-package]{the network package}
 }
 
 When converting from a simplicial complex structure to a graph structure,
-only the 1-skeleton is converted; simplices of dimension > 1 are discarded.
+only the 1-skeleton is converted; simplices of dimension > 1 are discarded
+and no warning is printed.
 }
