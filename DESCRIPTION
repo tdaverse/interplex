@@ -1,11 +1,13 @@
 Package: interplex
 Title: Convert between simplicial complex data structures
 Version: 0.0.0.9000
-Authors@R: 
-    person("Jason Cory", "Brunson", ,
-    "cornelioid@gmail.com",
-    role = c("aut", "cre"),
-    comment = c(ORCID = "0000-0003-3126-9494"))
+Authors@R: c(
+    person(
+        given = "Jason Cory",
+        family = "Brunson",
+        email = "cornelioid@gmail.com",
+        role = c("aut", "cre"),
+        comment = c(ORCID = "0000-0003-3126-9494")))
 Description: What the package does (one paragraph).
 Imports:
     TDA,
