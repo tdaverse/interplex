@@ -64,8 +64,8 @@ as_simplextree.igraph <- function(x, index = NULL, ...) {
 as_simplextree.network <- function(x, index = NULL, ...) {
   
   # convert to an igraph object
-  x <- intergraph::asIgraph(x, index = index, ...)
+  x <- intergraph::asIgraph(x, ...)
   
   # invoke 'igraph' method
-  as_simplextree(x)
+  as_simplextree(x, index = index)
 }
