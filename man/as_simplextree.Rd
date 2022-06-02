@@ -17,14 +17,17 @@ as_simplextree(x, ...)
 
 \method{as_simplextree}{simplextree}(x, ...)
 
-\method{as_simplextree}{igraph}(x, ...)
+\method{as_simplextree}{igraph}(x, index = NULL, ...)
 
-\method{as_simplextree}{network}(x, ...)
+\method{as_simplextree}{network}(x, index = NULL, ...)
 }
 \arguments{
 \item{x}{An R object to be coerced. See Details.}
 
 \item{...}{Additional arguments passed to methods.}
+
+\item{index}{Integer-valued vertex attribute to be used as 0-simplex indices.
+Ignored if \code{NULL} (the default).}
 }
 \value{
 An object of class 'simplextree'.
@@ -50,6 +53,15 @@ g <- igraph::graph(c(1,2, 2,3, 1,3, 3,4))
 print(g)
 st_g <- as_simplextree(g)
 print(st_g)
+
+# specify 0-simplex indices
+set.seed(0)
+g <- igraph::set_vertex_attr(g, "id", value = sample(igraph::vcount(g)) + 1L)
+igraph::V(g)$id
+igraph::as_edgelist(g)
+st_g <- as_simplextree(g, index = "id")
+st_g$vertices
+st_g$edges
 
 # convert a network object
 el <- data.frame(tails = c(1, 2, 1, 3), heads = c(2, 3, 3, 4))

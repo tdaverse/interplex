@@ -22,7 +22,7 @@
 #'   in [the simplextree package][simplextree::simplextree-package]
 #' * an 'igraph' object,
 #'   as implemented
-#'   in [the igraph package][igraph]
+#'   in [the igraph package][igraph::igraph]
 #' * a 'network' object,
 #'   as implemented
 #'   in [the network package][network::network-package]

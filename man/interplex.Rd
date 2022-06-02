@@ -25,7 +25,7 @@ as implemented
 in \link[simplextree:simplextree-package]{the simplextree package}
 \item an 'igraph' object,
 as implemented
-in \link[=igraph]{the igraph package}
+in \link[igraph:aaa-igraph-package]{the igraph package}
 \item a 'network' object,
 as implemented
 in \link[network:network-package]{the network package}
