@@ -1,10 +1,10 @@
-# intergraph
+# interplex
 
 This is an R package to facilitate conversion between different structures for simplicial complex data.
 
 ## supported structures
 
-{intergraph} includes converters between the following data structures:
+{interplex} includes converters between the following data structures:
 
 * complete lists of simplices, used by the [{TDA}](https://cran.r-project.org/web/packages/TDA/index.html) package
 * simplex tree instances of class 'Rcpp_SimplexTree' or 'simplextree',
