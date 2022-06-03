@@ -46,7 +46,7 @@ as_network.default <- function(x, index = NULL, ...) {
 
 #' @rdname as_network
 #' @export
-as_network.Rcpp_SimplexTree <- function(x, ...) {
+as_network.Rcpp_SimplexTree <- function(x, index = NULL, ...) {
   
   # create network from vertex and edge data
   res <- network::network(
@@ -71,14 +71,17 @@ as_network.Rcpp_SimplexTree <- function(x, ...) {
     nv = length(x$vertices) - length(res$val),
     vattr = list(list(index = setdiff(x$vertices, unique(as.vector(x$edges)))))
   )
-  # return network
+  # add vertex IDs as an attribute
+  if (! is.null(index))
+    res <- network::set.vertex.attribute(res, index, as.integer(x$vertices))
+  
   res
 }
 
 #' @rdname as_network
 #' @export
-as_network.simplextree <- function(x, ...) {
-  as_network.Rcpp_SimplexTree(x, ...)
+as_network.simplextree <- function(x, index = NULL, ...) {
+  as_network.Rcpp_SimplexTree(x, index = index, ...)
 }
 
 #' @rdname as_network

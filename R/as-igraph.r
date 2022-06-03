@@ -36,7 +36,7 @@ as_igraph.default <- function(x, index = NULL, ...) {
 
 #' @rdname as_igraph
 #' @export
-as_igraph.Rcpp_SimplexTree <- function(x, ...) {
+as_igraph.Rcpp_SimplexTree <- function(x, index = NULL, ...) {
   
   # store vertex IDs
   x_vid <- as.integer(x$vertices)
@@ -50,13 +50,16 @@ as_igraph.Rcpp_SimplexTree <- function(x, ...) {
     directed = FALSE
   )
   # add vertex IDs as an attribute
-  igraph::set_vertex_attr(res, "index", value = x_vid)
+  if (! is.null(index))
+    res <- igraph::set_vertex_attr(res, index, value = x_vid)
+  
+  res
 }
 
 #' @rdname as_igraph
 #' @export
-as_igraph.simplextree <- function(x, ...) {
-  as_igraph.Rcpp_SimplexTree(x, ...)
+as_igraph.simplextree <- function(x, index = NULL, ...) {
+  as_igraph.Rcpp_SimplexTree(x, index = index, ...)
 }
 
 #' @rdname as_igraph

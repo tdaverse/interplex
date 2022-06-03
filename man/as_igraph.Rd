@@ -13,9 +13,9 @@ as_igraph(x, ...)
 
 \method{as_igraph}{default}(x, index = NULL, ...)
 
-\method{as_igraph}{Rcpp_SimplexTree}(x, ...)
+\method{as_igraph}{Rcpp_SimplexTree}(x, index = NULL, ...)
 
-\method{as_igraph}{simplextree}(x, ...)
+\method{as_igraph}{simplextree}(x, index = NULL, ...)
 
 \method{as_igraph}{igraph}(x, ...)
 

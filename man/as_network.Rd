@@ -13,9 +13,9 @@ as_network(x, ...)
 
 \method{as_network}{default}(x, index = NULL, ...)
 
-\method{as_network}{Rcpp_SimplexTree}(x, ...)
+\method{as_network}{Rcpp_SimplexTree}(x, index = NULL, ...)
 
-\method{as_network}{simplextree}(x, ...)
+\method{as_network}{simplextree}(x, index = NULL, ...)
 
 \method{as_network}{igraph}(x, ...)
 
