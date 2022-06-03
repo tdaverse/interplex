@@ -1,6 +1,6 @@
 Package: interplex
-Title: Convert between simplicial complex data structures
-Version: 0.0.0.9000
+Title: Coercion Methods for Simplicial Complex Data Structures
+Version: 0.0.1
 Authors@R: c(
     person(
         given = "Jason Cory",
@@ -8,13 +8,21 @@ Authors@R: c(
         email = "cornelioid@gmail.com",
         role = c("aut", "cre"),
         comment = c(ORCID = "0000-0003-3126-9494")))
-Description: What the package does (one paragraph).
+Description: This is a lightweight package to facilitate coercion (conversion)
+    between data structures used by different packages to represent simplicial
+    complexes. Currently supported structures are complete lists of simplices as
+    used by 'TDA', simplex tree instances as used by 'simplextree', and the
+    graph/network classes of 'igraph' and 'network' by way of the 'intergraph'
+    package.
 Suggests:
     TDA,
     simplextree,
-    igraph,
-    network,
-    intergraph
+    igraph (>= 0.6-0),
+    network (>= 1.4-2),
+    intergraph,
+    roxygen2,
+    rmarkdown,
+    testthat
 License: GPL (>= 3)
 Encoding: UTF-8
 Roxygen: list(markdown = TRUE)
