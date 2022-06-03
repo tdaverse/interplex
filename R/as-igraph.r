@@ -17,12 +17,16 @@ as_igraph.default <- function(x, ...) {
   
   # subset to 0- and 1-simplices
   x <- x[sapply(x, length) <= 2L]
+  # store vertex IDs
+  x_vid <- sort(unique(unlist(x)))
   # create graph from vertex and edge data
-  igraph::graph(
-    edges = unlist(x[sapply(x, length) == 2L]),
-    n = max(unlist(x[sapply(x, length) == 1L])),
+  res <- igraph::graph(
+    edges = match(unlist(x[sapply(x, length) == 2L]), x_vid),
+    n = max(match(unlist(x[sapply(x, length) == 1L]), x_vid)),
     directed = FALSE
   )
+  # add vertex IDs as an attribute
+  igraph::set_vertex_attr(res, "index", value = x_vid)
 }
 
 #' @rdname as_igraph

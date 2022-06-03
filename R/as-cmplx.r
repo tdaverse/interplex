@@ -41,8 +41,11 @@ as_cmplx.simplextree <- function(x, ...) {
 #' @export
 as_cmplx.igraph <- function(x, ...) {
   
-  # generate a list of edge vectors
-  edges <- apply(igraph::as_edgelist(x), 1L, function(y) y, simplify = FALSE)
+  # generate a list of edge vectors (using integer indices)
+  edges <- apply(
+    igraph::as_edgelist(x, names = FALSE),
+    1L, function(y) y, simplify = FALSE
+  )
   # concatenate with a list of vertex vectors
   c(as.integer(igraph::V(x)), edges)
 }

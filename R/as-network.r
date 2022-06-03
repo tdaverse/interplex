@@ -15,19 +15,28 @@ as_network.default <- function(x, ...) {
   x <- ensure_cmplx(x)
   x <- ensure_list(x)
   
+  # store vertex IDs
+  x_vid <- sort(unique(unlist(x)))
+  # reindexed vertex data
+  x_vl <- seq(length(x_vid))
+  # reindexed edge data
+  x_el <- t(sapply(x[sapply(x, length) == 2L], identity))
+  x_el[] <- match(x_el, x_vid)
   # create network from vertex and edge data
-  network::network(
-    x = t(sapply(x[sapply(x, length) == 2L], identity)),
+  res <- network::network(
+    x = x_el,
     directed = FALSE,
     hyper = FALSE,
     loops = FALSE,
     multiple = FALSE,
     bipartite = FALSE,
     vertices = data.frame(
-      vertex.names = unlist(x[sapply(x, length) == 1L]),
+      vertex.names = x_vl,
       is_actor = TRUE
     )
   )
+  # add vertex IDs as an attribute
+  network::set.vertex.attribute(res, "index", x_vid)
 }
 
 #' @rdname as_network

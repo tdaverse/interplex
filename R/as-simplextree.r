@@ -52,7 +52,10 @@ as_simplextree.igraph <- function(x, index = NULL, ...) {
   vl <- if (is.null(index)) igraph::V(x) else igraph::vertex_attr(x, index)
   res$insert(as.list(vl))
   # insert all edges
-  el <- apply(igraph::as_edgelist(x), 1L, function(y) y, simplify = FALSE)
+  el <- apply(
+    igraph::as_edgelist(x, names = FALSE),
+    1L, function(y) y, simplify = FALSE
+  )
   if (! is.null(index)) el <- lapply(el, function(e) vl[e])
   res$insert(el)
   # return result
