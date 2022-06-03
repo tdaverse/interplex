@@ -25,11 +25,11 @@ test_that("list-to-'simplextree' conversion preserves 0,1-simplices", {
 cp_ac <- lapply(cp_ac, function(s) s + 2L)
 
 test_that("list-to-'igraph' conversion encodes indices", {
-  ig_ac <- as_igraph(cp_ac)
+  ig_ac <- as_igraph(cp_ac, index = "index")
   expect_true("index" %in% igraph::vertex_attr_names(ig_ac))
 })
 
 test_that("list-to-'network' conversion encodes indices", {
-  nw_ac <- as_network(cp_ac)
+  nw_ac <- as_network(cp_ac, index = "index")
   expect_true("index" %in% network::list.vertex.attributes(nw_ac))
 })

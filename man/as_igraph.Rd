@@ -11,7 +11,7 @@
 \usage{
 as_igraph(x, ...)
 
-\method{as_igraph}{default}(x, ...)
+\method{as_igraph}{default}(x, index = NULL, ...)
 
 \method{as_igraph}{Rcpp_SimplexTree}(x, ...)
 
@@ -25,6 +25,9 @@ as_igraph(x, ...)
 \item{x}{An R object to be coerced. See Details.}
 
 \item{...}{Additional arguments passed to methods.}
+
+\item{index}{Character string to be added as a vertex attribute containing
+0-simplex indices. Ignored if \code{NULL} (the default).}
 }
 \value{
 An object of class 'igraph'.

@@ -1,8 +1,10 @@
 #' @title Convert objects to class 'network'
-#' 
+#'
 #' @description This generic function...
-#' 
+#'
 #' @param x An R object to be coerced. See Details.
+#' @param index Character string to be added as a vertex attribute containing
+#'   0-simplex indices. Ignored if `NULL` (the default).
 #' @param ... Additional arguments passed to methods.
 #' @return An object of class 'network'.
 #' @example inst/examples/as-network.r
@@ -11,7 +13,7 @@ as_network <- function(x, ...) UseMethod("as_network")
 
 #' @rdname as_network
 #' @export
-as_network.default <- function(x, ...) {
+as_network.default <- function(x, index = NULL, ...) {
   x <- ensure_cmplx(x)
   x <- ensure_list(x)
   
@@ -36,7 +38,10 @@ as_network.default <- function(x, ...) {
     )
   )
   # add vertex IDs as an attribute
-  network::set.vertex.attribute(res, "index", x_vid)
+  if (! is.null(index))
+    res <- network::set.vertex.attribute(res, index, x_vid)
+  
+  res
 }
 
 #' @rdname as_network

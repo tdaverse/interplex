@@ -3,6 +3,8 @@
 #' @description This generic function...
 #' 
 #' @param x An R object to be coerced. See Details.
+#' @param index Character string to be added as a vertex attribute containing
+#'   0-simplex indices. Ignored if `NULL` (the default).
 #' @param ... Additional arguments passed to methods.
 #' @return An object of class 'igraph'.
 #' @example inst/examples/as-igraph.r
@@ -11,7 +13,7 @@ as_igraph <- function(x, ...) UseMethod("as_igraph")
 
 #' @rdname as_igraph
 #' @export
-as_igraph.default <- function(x, ...) {
+as_igraph.default <- function(x, index = NULL, ...) {
   x <- ensure_cmplx(x)
   x <- ensure_list(x)
   
@@ -26,7 +28,10 @@ as_igraph.default <- function(x, ...) {
     directed = FALSE
   )
   # add vertex IDs as an attribute
-  igraph::set_vertex_attr(res, "index", value = x_vid)
+  if (! is.null(index))
+    res <- igraph::set_vertex_attr(res, index, value = x_vid)
+  
+  res
 }
 
 #' @rdname as_igraph
