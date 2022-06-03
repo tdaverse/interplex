@@ -6,10 +6,27 @@ This is an R package to facilitate conversion between different structures for s
 
 {interplex} includes converters between the following data structures:
 
-* complete lists of simplices, used by the [{TDA}](https://cran.r-project.org/web/packages/TDA/index.html) package
+* complete lists of simplices, used by the [{TDA}](https://cran.r-project.org/package=TDA) package
 * simplex tree instances of class 'Rcpp_SimplexTree' or 'simplextree',
   provided by the [{simplextree}](https://github.com/peekxc/simplextree) package
 * objects of class 'igraph', provided by the [{igraph}](https://igraph.org/r/) package
 * objects of class 'network', provided by the [{network}](https://github.com/statnet/network) package
 
 Coercion among the graph/network classes is done using methods from the [{intergraph}](https://mbojan.github.io/intergraph/) package. Simplicial complexes are only directly coerced between the 'igraph' class.
+
+# acknowledgments
+
+This package was designed and developed in part through discussions with Yara Skaf, Matt Piekenbrock, and Raoul Wadhwa.
+
+## resources
+
+Development of this package benefitted from the use of equipment and the
+support of colleagues at [UF Health](https://ufhealth.org/).
+
+## contribute
+
+Contributions in any form are more than welcome!
+See the
+[CONTRIBUTING](https://github.com/corybrunson/interplex/blob/main/CONTRIBUTING.md)
+file for guidance, and please respect the [Code of
+Conduct](https://github.com/corybrunson/interplex/blob/main/CODE_OF_CONDUCT.md).

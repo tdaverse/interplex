@@ -1,8 +1,12 @@
 # ignore
 ^ignore$
 
+# GitHub
+^LICENSE\.md$
+^CODE_OF_CONDUCT\.md$
+^CONTRIBUTING\.md$
+
 # R project
 ^README\.Rmd$
-^LICENSE\.md$
 ^.*\.Rproj$
 ^\.Rproj\.user$
