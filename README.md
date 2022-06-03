@@ -2,7 +2,17 @@
 
 This is an R package to facilitate conversion between different structures for simplicial complex data.
 
-## supported structures
+## usage
+
+### installation
+
+Until {interplex} is submitted to CRAN, install from GitHub as follows:
+
+```r
+remotes::install_github("corybrunson/interplex")
+```
+
+### supported structures
 
 {interplex} includes converters between the following data structures:
 
@@ -14,16 +24,16 @@ This is an R package to facilitate conversion between different structures for s
 
 Coercion among the graph/network classes is done using methods from the [{intergraph}](https://mbojan.github.io/intergraph/) package. Simplicial complexes are only directly coerced between the 'igraph' class.
 
-# acknowledgments
+## acknowledgments
 
 This package was designed and developed in part through discussions with Yara Skaf, Matt Piekenbrock, and Raoul Wadhwa.
 
-## resources
+### resources
 
 Development of this package benefitted from the use of equipment and the
 support of colleagues at [UF Health](https://ufhealth.org/).
 
-## contribute
+### contribute
 
 Contributions in any form are more than welcome!
 See the
