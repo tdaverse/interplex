@@ -8,4 +8,4 @@ This first release includes converters between the following data structures:
 * objects of class 'igraph', provided by the {igraph} package
 * objects of class 'network', provided by the {network} package
 
-Coercion among the graph/network classes is done using methods from the {intergraph} package. Simplicial complexes are only directly coerced between the 'igraph' class.
+Coercion among the graph/network classes is done using methods from the {intergraph} package. Simplicial complexes are only directly coerced from the 'igraph' class.
