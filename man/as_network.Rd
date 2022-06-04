@@ -55,8 +55,8 @@ nw_st <- as_network(st)
 print(nw_st)
 
 # convert an igraph object
-g <- igraph::graph(c(1,2, 2,3, 1,3, 3,4))
-print(g)
-nw_g <- as_network(g)
-print(nw_g)
+ig <- igraph::graph(c(1,2, 2,3, 1,3, 3,4))
+print(ig)
+nw_ig <- as_network(ig)
+print(nw_ig)
 }

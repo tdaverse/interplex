@@ -25,3 +25,12 @@ sort_el <- function(x) {
   # sort rows by from & to indices
   x[order(x[, 1L], x[, 2L]), ]
 }
+
+# check that `index` is an integer-valued attribute
+ensure_index <- function(x, index) {
+  stopifnot(
+    is.character(index),
+    index %in% igraph::vertex_attr_names(x),
+    all(igraph::vertex_attr(x, index) %% 1 == 0)
+  )
+}

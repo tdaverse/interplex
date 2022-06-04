@@ -36,29 +36,24 @@ as_simplextree.simplextree <- function(x, ...) {
 #' @rdname as_simplextree
 #' @export
 as_simplextree.igraph <- function(x, index = NULL, ...) {
+  if (! is.null(index)) ensure_index(x, index)
   
-  if (! is.null(index)) {
-    # check that `index` is an integer-valued attribute
-    stopifnot(
-      is.character(index),
-      index %in% igraph::vertex_attr_names(x),
-      all(igraph::vertex_attr(x, index) %% 1 == 0)
-    )
-  }
+  # generate vertex list
+  vl <- if (is.null(index)) igraph::V(x) else igraph::vertex_attr(x, index)
+  # generate edge list
+  el <- apply(
+    igraph::as_edgelist(x, names = FALSE),
+    1L, identity, simplify = FALSE
+  )
+  if (! is.null(index)) el <- lapply(el, function(e) vl[e])
+  vl <- as.list(vl)
   
   # initialize simplicial complex
   res <- simplextree::simplex_tree()
-  # insert all vertices
-  vl <- if (is.null(index)) igraph::V(x) else igraph::vertex_attr(x, index)
-  res$insert(as.list(vl))
-  # insert all edges
-  el <- apply(
-    igraph::as_edgelist(x, names = FALSE),
-    1L, function(y) y, simplify = FALSE
-  )
-  if (! is.null(index)) el <- lapply(el, function(e) vl[e])
+  # insert vertices and edges
+  res$insert(vl)
   res$insert(el)
-  # return result
+  
   res
 }
 

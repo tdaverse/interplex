@@ -18,7 +18,7 @@ print(ig_st)
 
 # convert a network object
 el <- data.frame(tails = c(1, 2, 1, 3), heads = c(2, 3, 3, 4))
-n <- network::network.edgelist(el, network::network.initialize(4))
-print(n)
-ig_n <- as_igraph(n)
-print(ig_n)
+nw <- network::network.edgelist(el, network::network.initialize(4))
+print(nw)
+ig_nw <- as_igraph(nw)
+print(ig_nw)

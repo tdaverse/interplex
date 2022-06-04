@@ -17,14 +17,17 @@ as_cmplx(x, ...)
 
 \method{as_cmplx}{simplextree}(x, ...)
 
-\method{as_cmplx}{igraph}(x, ...)
+\method{as_cmplx}{igraph}(x, index = NULL, ...)
 
-\method{as_cmplx}{network}(x, ...)
+\method{as_cmplx}{network}(x, index = NULL, ...)
 }
 \arguments{
 \item{x}{An R object to be coerced. See Details.}
 
 \item{...}{Additional arguments passed to methods.}
+
+\item{index}{Integer-valued vertex attribute to be used as 0-simplex indices.
+Ignored if \code{NULL} (the default).}
 }
 \value{
 A list of integer vectors, each encoding one simplex.
@@ -50,15 +53,17 @@ cp_st <- as_cmplx(st)
 print(cp_st)
 
 # convert an igraph object
-g <- igraph::graph(c(1,2, 2,3, 1,3, 3,4))
-print(g)
-cp_g <- as_cmplx(g)
-print(cp_g)
+ig <- igraph::graph(c(1,2, 2,3, 1,3, 3,4))
+set.seed(0L)
+ig <- igraph::set_vertex_attr(ig, "id", value = sample(igraph::vcount(ig)))
+print(ig)
+cp_ig <- as_cmplx(ig, index = "id")
+print(cp_ig)
 
 # convert a network object
 el <- data.frame(tails = c(1, 2, 1, 3), heads = c(2, 3, 3, 4))
-n <- network::network.edgelist(el, network::network.initialize(4))
-print(n)
-cp_n <- as_cmplx(n)
-print(cp_n)
+nw <- network::network.edgelist(el, network::network.initialize(4))
+print(nw)
+cp_nw <- as_cmplx(nw)
+print(cp_nw)
 }

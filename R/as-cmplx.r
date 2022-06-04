@@ -3,6 +3,8 @@
 #' @description This generic function...
 #' 
 #' @param x An R object to be coerced. See Details.
+#' @param index Integer-valued vertex attribute to be used as 0-simplex indices.
+#'   Ignored if `NULL` (the default).
 #' @param ... Additional arguments passed to methods.
 #' @return A list of integer vectors, each encoding one simplex.
 #' @example inst/examples/as-cmplx.r
@@ -39,24 +41,30 @@ as_cmplx.simplextree <- function(x, ...) {
 
 #' @rdname as_cmplx
 #' @export
-as_cmplx.igraph <- function(x, ...) {
+as_cmplx.igraph <- function(x, index = NULL, ...) {
+  if (! is.null(index)) ensure_index(x, index)
   
-  # generate a list of edge vectors (using integer indices)
-  edges <- apply(
+  # generate vertex list
+  vl <- if (is.null(index)) igraph::V(x) else igraph::vertex_attr(x, index)
+  # generate edge list
+  el <- apply(
     igraph::as_edgelist(x, names = FALSE),
-    1L, function(y) y, simplify = FALSE
+    1L, identity, simplify = FALSE
   )
+  if (! is.null(index)) el <- lapply(el, function(e) vl[e])
+  vl <- as.list(vl)
+  
   # concatenate with a list of vertex vectors
-  c(as.integer(igraph::V(x)), edges)
+  c(vl, el)
 }
 
 #' @rdname as_cmplx
 #' @export
-as_cmplx.network <- function(x, ...) {
+as_cmplx.network <- function(x, index = NULL, ...) {
   
   # convert to an igraph object
   x <- intergraph::asIgraph(x, ...)
   
   # invoke 'igraph' method
-  as_cmplx(x)
+  as_cmplx(x, index = index)
 }

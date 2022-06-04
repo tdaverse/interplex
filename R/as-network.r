@@ -24,6 +24,7 @@ as_network.default <- function(x, index = NULL, ...) {
   # reindexed edge data
   x_el <- t(sapply(x[sapply(x, length) == 2L], identity))
   x_el[] <- match(x_el, x_vid)
+  
   # create network from vertex and edge data
   res <- network::network(
     x = x_el,

@@ -11,23 +11,23 @@ st_rf2 <- as_simplextree(rf$cmplx)
 print(st_rf2)
 
 # convert an igraph object
-g <- igraph::graph(c(1,2, 2,3, 1,3, 3,4))
-print(g)
-st_g <- as_simplextree(g)
-print(st_g)
+ig <- igraph::graph(c(1,2, 2,3, 1,3, 3,4))
+print(ig)
+st_ig <- as_simplextree(ig)
+print(st_ig)
 
 # specify 0-simplex indices
-set.seed(0)
-g <- igraph::set_vertex_attr(g, "id", value = sample(igraph::vcount(g)) + 1L)
-igraph::V(g)$id
-igraph::as_edgelist(g)
-st_g <- as_simplextree(g, index = "id")
-st_g$vertices
-st_g$edges
+set.seed(0L)
+ig <- igraph::set_vertex_attr(ig, "id", value = sample(igraph::vcount(ig)) + 1L)
+igraph::V(ig)$id
+igraph::as_edgelist(ig)
+st_ig <- as_simplextree(ig, index = "id")
+st_ig$vertices
+st_ig$edges
 
 # convert a network object
 el <- data.frame(tails = c(1, 2, 1, 3), heads = c(2, 3, 3, 4))
-n <- network::network.edgelist(el, network::network.initialize(4))
-print(n)
-st_n <- as_simplextree(n)
-print(st_n)
+nw <- network::network.edgelist(el, network::network.initialize(4))
+print(nw)
+st_nw <- as_simplextree(nw)
+print(st_nw)
