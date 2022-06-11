@@ -22,9 +22,8 @@ test_that("'simplextree'-to-list conversion preserves 0,1-simplices", {
                     t(sapply(cp_ex[sapply(cp_ex, length) == 2L], identity))))
 })
 
-st_gen <- lapply(st_ex$serialize(), `+`, 2L)
 st_ex$clear()
-st_ex$deserialize(st_gen)
+st_ex$insert(list(3:5, c(5, 8, 13), c(3, 13), 13:14, 14:15))
 
 test_that("'simplextree'-to-'igraph' conversion encodes indices", {
   ig_ex <- as_igraph(st_ex, index = "id")

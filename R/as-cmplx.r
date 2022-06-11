@@ -27,10 +27,11 @@ as_cmplx.Rcpp_SimplexTree <- function(x, ...) {
   
   # extract list of fixed-dimension simplex matrices
   simps <- x$as_list()
-  # convert matrices to lists
-  simps <- lapply(simps, function(row) apply(row, 1L, identity, simplify = FALSE))
-  # unlist to list of simplices
-  unlist(simps, recursive = FALSE)
+  # convert dimension-specific simplex matrices to a simplex list
+  simp_dim <- if (utils::packageVersion("simplextree") >= "1.0.1") 2L else 1L
+  do.call(c, lapply(simps, function(mat) {
+    apply(mat, MARGIN = simp_dim, FUN = identity, simplify = FALSE)
+  }))
 }
 
 #' @rdname as_cmplx
