@@ -8,7 +8,7 @@
 \alias{as_cmplx.gudhi.simplex_tree.SimplexTree}
 \alias{as_cmplx.igraph}
 \alias{as_cmplx.network}
-\title{Convert simplicial complex objects to lists in the TDA package style}
+\title{Coerce objects to lists in the TDA package style}
 \usage{
 as_cmplx(x, ...)
 

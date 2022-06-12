@@ -1,4 +1,4 @@
-#' @title Convert objects to class 'simplextree'
+#' @title Coerce objects to class 'simplextree'
 #'
 #' @description This generic function...
 #'
@@ -7,7 +7,7 @@
 #'   Ignored if `NULL` (the default).
 #' @param ... Additional arguments passed to methods.
 #' @return An object of class 'simplextree'.
-#' @example inst/examples/as-simplextree.r
+#' @example inst/examples/ex-as-simplextree.r
 #' @export
 as_simplextree <- function(x, ...) UseMethod("as_simplextree")
 
@@ -73,7 +73,7 @@ as_simplextree.igraph <- function(x, index = NULL, ...) {
 #' @export
 as_simplextree.network <- function(x, index = NULL, ...) {
   
-  # convert to an igraph object
+  # coerce to an igraph object
   x <- intergraph::asIgraph(x, ...)
   
   # invoke 'igraph' method

@@ -7,7 +7,7 @@
 \alias{as_py_gudhi.simplextree}
 \alias{as_py_gudhi.igraph}
 \alias{as_py_gudhi.network}
-\title{Convert simplicial complex objects to GUDHI simplex trees}
+\title{Coerce objects to GUDHI simplex trees}
 \usage{
 as_py_gudhi(x, ...)
 
@@ -85,4 +85,9 @@ print(nw)
 gd_nw <- as_py_gudhi(nw)
 print_py_gudhi(gd_nw)
 }
+}
+\author{
+Jason Cory Brunson
+
+Yara Skaf
 }

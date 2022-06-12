@@ -1,4 +1,4 @@
-#' @title Convert objects to class 'network'
+#' @title Coerce objects to class 'network'
 #'
 #' @description This generic function...
 #'
@@ -7,7 +7,7 @@
 #'   0-simplex indices. Ignored if `NULL` (the default).
 #' @param ... Additional arguments passed to methods.
 #' @return An object of class 'network'.
-#' @example inst/examples/as-network.r
+#' @example inst/examples/ex-as-network.r
 #' @export
 as_network <- function(x, ...) UseMethod("as_network")
 

@@ -7,7 +7,7 @@
 \alias{as_igraph.simplextree}
 \alias{as_igraph.igraph}
 \alias{as_igraph.network}
-\title{Convert objects to class 'igraph'}
+\title{Coerce objects to class 'igraph'}
 \usage{
 as_igraph(x, ...)
 

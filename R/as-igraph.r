@@ -1,4 +1,4 @@
-#' @title Convert objects to class 'igraph'
+#' @title Coerce objects to class 'igraph'
 #' 
 #' @description This generic function...
 #' 
@@ -7,7 +7,7 @@
 #'   0-simplex indices. Ignored if `NULL` (the default).
 #' @param ... Additional arguments passed to methods.
 #' @return An object of class 'igraph'.
-#' @example inst/examples/as-igraph.r
+#' @example inst/examples/ex-as-igraph.r
 #' @export
 as_igraph <- function(x, ...) UseMethod("as_igraph")
 

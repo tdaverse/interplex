@@ -1,4 +1,4 @@
-#' @title Convert simplicial complex objects to lists in the TDA package style
+#' @title Coerce objects to lists in the TDA package style
 #' 
 #' @description This generic function...
 #' 
@@ -7,7 +7,7 @@
 #'   Ignored if `NULL` (the default).
 #' @param ... Additional arguments passed to methods.
 #' @return A list of integer vectors, each encoding one simplex.
-#' @example inst/examples/as-cmplx.r
+#' @example inst/examples/ex-as-cmplx.r
 #' @export
 as_cmplx <- function(x, ...) UseMethod("as_cmplx")
 
@@ -64,7 +64,7 @@ as_cmplx.igraph <- function(x, index = NULL, ...) {
 #' @export
 as_cmplx.network <- function(x, index = NULL, ...) {
   
-  # convert to an igraph object
+  # coerce to an igraph object
   x <- intergraph::asIgraph(x, ...)
   
   # invoke 'igraph' method

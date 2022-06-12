@@ -8,7 +8,7 @@
 \alias{as_network.gudhi.simplex_tree.SimplexTree}
 \alias{as_network.igraph}
 \alias{as_network.network}
-\title{Convert objects to class 'network'}
+\title{Coerce objects to class 'network'}
 \usage{
 as_network(x, ...)
 

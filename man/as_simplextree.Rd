@@ -9,7 +9,7 @@
 \alias{as_simplextree.gudhi.simplex_tree.SimplexTree}
 \alias{as_simplextree.igraph}
 \alias{as_simplextree.network}
-\title{Convert objects to class 'simplextree'}
+\title{Coerce objects to class 'simplextree'}
 \usage{
 \method{as_igraph}{gudhi.simplex_tree.SimplexTree}(x, index = NULL, ...)
 

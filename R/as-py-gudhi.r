@@ -1,4 +1,4 @@
-#' @title Convert simplicial complex objects to GUDHI simplex trees
+#' @title Coerce objects to GUDHI simplex trees
 #' 
 #' @description This generic function...
 #' 
@@ -7,7 +7,9 @@
 #'   Ignored if `NULL` (the default).
 #' @param ... Additional arguments passed to methods.
 #' @return A list of integer vectors, each encoding one simplex.
-#' @example inst/examples/as-py-gudhi.r
+#' @example inst/examples/ex-as-py-gudhi.r
+#' @author Jason Cory Brunson
+#' @author Yara Skaf
 #' @export
 as_py_gudhi <- function(x, ...) UseMethod("as_py_gudhi")
 
@@ -87,7 +89,7 @@ as_py_gudhi.igraph <- function(x, index = NULL, ...) {
 #' @export
 as_py_gudhi.network <- function(x, index = NULL, ...) {
   
-  # convert to an igraph object
+  # coerce to an igraph object
   x <- intergraph::asIgraph(x, ...)
   
   # invoke 'igraph' method
