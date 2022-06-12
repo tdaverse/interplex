@@ -62,6 +62,36 @@ as_igraph.simplextree <- function(x, index = NULL, ...) {
   as_igraph.Rcpp_SimplexTree(x, index = index, ...)
 }
 
+#' @rdname as_simplextree
+#' @export
+as_igraph.gudhi.simplex_tree.SimplexTree <- function(x, index = NULL, ...) {
+  
+  # store vertices
+  x_vid <- reticulate::iterate(
+    x$get_skeleton(0L),
+    function(s) s[[1]],
+    simplify = TRUE
+  )
+  # store edges as a vector
+  x_edges <- reticulate::iterate(
+    x$get_skeleton(1L),
+    function(s) s[[1]],
+    simplify = FALSE
+  )
+  x_edges <- unlist(x_edges[sapply(x_edges, length) == 2L])
+  # create graph from vertex and edge data
+  res <- igraph::graph(
+    edges = match(x_edges, x_vid),
+    n = x$num_vertices(),
+    directed = FALSE
+  )
+  # add vertex IDs as an attribute
+  if (! is.null(index))
+    res <- igraph::set_vertex_attr(res, index, value = x_vid)
+  
+  res
+}
+
 #' @rdname as_igraph
 #' @export
 as_igraph.igraph <- function(x, ...) x

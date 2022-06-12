@@ -54,6 +54,15 @@ st$insert(list(3:5, 5:6, 8))
 ig_st <- as_igraph(st)
 print(ig_st)
 
+\dontrun{
+# convert a Python GUDHI simplex tree
+gd <- reticulate::import("gudhi")
+gd_st <- gd$SimplexTree()
+for (s in list(3:5, 5:6, 8)) gd_st$insert(as.list(s))
+ig_gd <- as_igraph(gd_st, index = "id")
+print(ig_gd)
+}
+
 # convert a network object
 el <- data.frame(tails = c(1, 2, 1, 3), heads = c(2, 3, 3, 4))
 nw <- network::network.edgelist(el, network::network.initialize(4))

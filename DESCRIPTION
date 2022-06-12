@@ -16,10 +16,11 @@ Description: This is a lightweight package to facilitate coercion (conversion)
     package.
 Suggests:
     TDA,
-    simplextree,
+    simplextree (>= 0.9.1),
     igraph (>= 0.6-0),
     network (>= 1.4-2),
     intergraph,
+    reticulate,
     roxygen2,
     rmarkdown,
     testthat

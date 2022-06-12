@@ -16,6 +16,14 @@ test_that("'network'-to-'simplextree' conversion preserves 0,1-simplices", {
   expect_true(all(nw_flo_el == st_flo$edges))
 })
 
+test_that("'network'-to-GUDHI conversion preserves 0,1-simplices", {
+  gd_flo <- as_py_gudhi(nw_flo)
+  expect_equal(network::network.size(nw_flo), gd_flo$num_vertices())
+  gd_el <- reticulate::iterate(gd_flo$get_skeleton(1L), function(s) s[[1L]])
+  gd_el <- sort_el(do.call(rbind, gd_el[sapply(gd_el, length) == 2L]))
+  expect_true(all(nw_flo_el == gd_el))
+})
+
 test_that("'network'-to-list conversion preserves 0,1-simplices", {
   cp_flo <- as_cmplx(nw_flo)
   expect_equal(network::network.size(nw_flo), length(unique(unlist(cp_flo))))

@@ -18,6 +18,32 @@ ensure_list <- function(x) {
   x
 }
 
+# check that `index` is an integer-valued attribute
+ensure_index <- function(x, index) {
+  stopifnot(
+    is.character(index),
+    index %in% igraph::vertex_attr_names(x),
+    all(igraph::vertex_attr(x, index) %% 1 == 0)
+  )
+}
+
+# get list of simplices from a 'simplextree' object
+simplextree_list <- function(x) {
+  # extract list of fixed-dimension simplex matrices
+  simps <- x$as_list()
+  # convert dimension-specific simplex matrices to a simplex list
+  simp_dim <- if (utils::packageVersion("simplextree") >= "1.0.1") 2L else 1L
+  do.call(c, lapply(simps, function(mat) {
+    apply(mat, MARGIN = simp_dim, FUN = identity, simplify = FALSE)
+  }))
+}
+
+# get edge matrix from a Python GUDHI simplex tree
+py_gudhi_edgelist <- function(x) {
+  el <- reticulate::iterate(x$get_skeleton(1L), function(s) s[[1L]])
+  do.call(rbind, el[sapply(el, length) == 2L])
+}
+
 # sort an undirected edge list matrix by columns in order
 sort_el <- function(x) {
   # put lower indices on left
@@ -26,11 +52,10 @@ sort_el <- function(x) {
   x[order(x[, 1L], x[, 2L]), ]
 }
 
-# check that `index` is an integer-valued attribute
-ensure_index <- function(x, index) {
-  stopifnot(
-    is.character(index),
-    index %in% igraph::vertex_attr_names(x),
-    all(igraph::vertex_attr(x, index) %% 1 == 0)
-  )
+# sort a list of simplices by dimension and vertex indices
+sort_lst <- function(x) {
+  # ensure that all simplices are sorted
+  x <- lapply(x, sort)
+  # put simplices in order of dimension and then vertices
+  x[order(sapply(x, length), sapply(x, paste, collapse = ""))]
 }

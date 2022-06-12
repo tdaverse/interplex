@@ -17,7 +17,7 @@ as_simplextree.default <- function(x, ...) {
   x <- ensure_cmplx(x)
   x <- ensure_list(x)
   
-  # insert all simplices into a new simplicial complex
+  # insert all simplices into a new simplex tree
   res <- simplextree::simplex_tree()
   res$insert(x)
   res
@@ -31,6 +31,18 @@ as_simplextree.Rcpp_SimplexTree <- function(x, ...) x
 #' @export
 as_simplextree.simplextree <- function(x, ...) {
   as_simplextree.Rcpp_SimplexTree(x, ...)
+}
+
+#' @rdname as_simplextree
+#' @export
+as_simplextree.gudhi.simplex_tree.SimplexTree <- function(x, ...) {
+  
+  # initialize simplex tree
+  res <- simplextree::simplex_tree()
+  # iteratively insert simplices
+  reticulate::iterate(x$get_simplices(), function(s) res$insert(s[[1L]]))
+  # return simplex tree
+  res
 }
 
 #' @rdname as_simplextree

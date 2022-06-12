@@ -25,19 +25,20 @@ as_cmplx.default <- function(x, ...) {
 #' @export
 as_cmplx.Rcpp_SimplexTree <- function(x, ...) {
   
-  # extract list of fixed-dimension simplex matrices
-  simps <- x$as_list()
-  # convert dimension-specific simplex matrices to a simplex list
-  simp_dim <- if (utils::packageVersion("simplextree") >= "1.0.1") 2L else 1L
-  do.call(c, lapply(simps, function(mat) {
-    apply(mat, MARGIN = simp_dim, FUN = identity, simplify = FALSE)
-  }))
+  simplextree_list(x)
 }
 
 #' @rdname as_cmplx
 #' @export
 as_cmplx.simplextree <- function(x, ...) {
   as_cmplx.Rcpp_SimplexTree(x, ...)
+}
+
+#' @rdname as_cmplx
+#' @export
+as_cmplx.gudhi.simplex_tree.SimplexTree <- function(x, ...) {
+  res <- reticulate::iterate(x$get_simplices(), function(s) s[[1L]])
+  res[order(sapply(res, length))]
 }
 
 #' @rdname as_cmplx

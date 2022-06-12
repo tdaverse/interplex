@@ -14,6 +14,15 @@ st$insert(list(3:5, 5:6, 8))
 cp_st <- as_cmplx(st)
 print(cp_st)
 
+\dontrun{
+# convert a Python GUDHI simplex tree
+gd <- reticulate::import("gudhi")
+gd_st <- gd$SimplexTree()
+for (s in list(3:5, 5:6, 8)) gd_st$insert(as.list(s))
+cp_gd <- as_cmplx(gd_st)
+print(cp_gd)
+}
+
 # convert an igraph object
 ig <- igraph::graph(c(1,2, 2,3, 1,3, 3,4))
 set.seed(0L)

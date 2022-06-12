@@ -22,6 +22,13 @@ test_that("list-to-'simplextree' conversion preserves 0,1-simplices", {
   expect_true(all(sort_el(cp_ac_el) == st_ac$edges))
 })
 
+test_that("list-to-GUDHI conversion preserves all simplices", {
+  gd_ac <- as_py_gudhi(cp_ac)
+  expect_equal(cp_ac_vc, gd_ac$num_vertices())
+  gd_sl <- reticulate::iterate(gd_ac$get_simplices(), function(s) s[[1L]])
+  expect_equal(sort_lst(gd_sl), sort_lst(cp_ac))
+})
+
 cp_ac <- lapply(cp_ac, function(s) s + 2L)
 cp_vi <- sort(unique(unlist(cp_ac)))
 

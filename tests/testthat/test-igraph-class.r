@@ -16,6 +16,14 @@ test_that("'igraph'-to-'simplextree' conversion preserves 0,1-simplices", {
   expect_true(all(ig_kt_el == st_kt$edges))
 })
 
+test_that("'igraph'-to-GUDHI conversion preserves 0,1-simplices", {
+  gd_kt <- as_py_gudhi(ig_kt)
+  expect_equal(igraph::gorder(ig_kt), gd_kt$num_vertices())
+  gd_el <- reticulate::iterate(gd_kt$get_skeleton(1L), function(s) s[[1L]])
+  gd_el <- sort_el(do.call(rbind, gd_el[sapply(gd_el, length) == 2L]))
+  expect_true(all(ig_kt_el == gd_el))
+})
+
 test_that("'igraph'-to-list conversion preserves 0,1-simplices", {
   cp_kt <- as_cmplx(ig_kt)
   expect_equal(igraph::gorder(ig_kt), length(unique(unlist(cp_kt))))

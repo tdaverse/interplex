@@ -5,6 +5,7 @@
 \alias{as_network.default}
 \alias{as_network.Rcpp_SimplexTree}
 \alias{as_network.simplextree}
+\alias{as_network.gudhi.simplex_tree.SimplexTree}
 \alias{as_network.igraph}
 \alias{as_network.network}
 \title{Convert objects to class 'network'}
@@ -16,6 +17,8 @@ as_network(x, ...)
 \method{as_network}{Rcpp_SimplexTree}(x, index = NULL, ...)
 
 \method{as_network}{simplextree}(x, index = NULL, ...)
+
+\method{as_network}{gudhi.simplex_tree.SimplexTree}(x, index = NULL, ...)
 
 \method{as_network}{igraph}(x, ...)
 
@@ -53,6 +56,15 @@ st <- simplextree::simplex_tree()
 st$insert(list(3:5, 5:6, 8))
 nw_st <- as_network(st)
 print(nw_st)
+
+\dontrun{
+# convert a Python GUDHI simplex tree
+gd <- reticulate::import("gudhi")
+gd_st <- gd$SimplexTree()
+for (s in list(3:5, 5:6, 8)) gd_st$insert(as.list(s))
+nw_gd <- as_network(gd_st, index = "id")
+print(nw_gd)
+}
 
 # convert an igraph object
 ig <- igraph::graph(c(1,2, 2,3, 1,3, 3,4))

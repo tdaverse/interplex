@@ -16,6 +16,15 @@ st$insert(list(3:5, 5:6, 8))
 nw_st <- as_network(st)
 print(nw_st)
 
+\dontrun{
+# convert a Python GUDHI simplex tree
+gd <- reticulate::import("gudhi")
+gd_st <- gd$SimplexTree()
+for (s in list(3:5, 5:6, 8)) gd_st$insert(as.list(s))
+nw_gd <- as_network(gd_st, index = "id")
+print(nw_gd)
+}
+
 # convert an igraph object
 ig <- igraph::graph(c(1,2, 2,3, 1,3, 3,4))
 print(ig)

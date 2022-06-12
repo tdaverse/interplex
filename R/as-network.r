@@ -87,6 +87,54 @@ as_network.simplextree <- function(x, index = NULL, ...) {
 
 #' @rdname as_network
 #' @export
+as_network.gudhi.simplex_tree.SimplexTree <- function(x, index = NULL, ...) {
+  
+  # store vertices
+  x_vid <- reticulate::iterate(
+    x$get_skeleton(0L),
+    function(s) s[[1]],
+    simplify = TRUE
+  )
+  # store edges as a matrix
+  x_edges <- reticulate::iterate(
+    x$get_skeleton(1L),
+    function(s) s[[1]],
+    simplify = FALSE
+  )
+  x_edges <- do.call(rbind, x_edges[sapply(x_edges, length) == 2L])
+  
+  # create network from vertex and edge data
+  res <- network::network(
+    x = cbind(
+      match(x_edges[, 1L], x_vid),
+      match(x_edges[, 2L], x_vid)
+    ),
+    directed = FALSE,
+    hyper = FALSE,
+    loops = FALSE,
+    multiple = FALSE,
+    bipartite = FALSE,
+    vertices = data.frame(
+      vertex.names = seq_along(x$num_vertices()),
+      is_actor = TRUE,
+      index = x$num_vertices()
+    )
+  )
+  # add isolates
+  network::add.vertices(
+    res,
+    nv = x$num_vertices() - length(res$val),
+    vattr = list(list(index = setdiff(x_vid, unique(as.vector(x_edges)))))
+  )
+  # add vertex IDs as an attribute
+  if (! is.null(index))
+    res <- network::set.vertex.attribute(res, index, as.integer(x_vid))
+  
+  res
+}
+
+#' @rdname as_network
+#' @export
 as_network.igraph <- function(x, ...) {
   # defer to intergraph
   intergraph::asNetwork(x, ...)
