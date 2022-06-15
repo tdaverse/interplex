@@ -1,13 +1,17 @@
 Package: interplex
 Title: Coercion Methods for Simplicial Complex Data Structures
-Version: 0.0.1
+Version: 0.1.0
 Authors@R: c(
     person(
         given = "Jason Cory",
         family = "Brunson",
         email = "cornelioid@gmail.com",
         role = c("aut", "cre"),
-        comment = c(ORCID = "0000-0003-3126-9494")))
+        comment = c(ORCID = "0000-0003-3126-9494")),
+    person(
+        given = "Yara",
+        family = "Skaf",
+        role = c("ctb")))
 Description: This is a lightweight package to facilitate coercion (conversion)
     between data structures used by different packages to represent simplicial
     complexes. Currently supported structures are complete lists of simplices as
