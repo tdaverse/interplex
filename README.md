@@ -27,7 +27,7 @@ Coercion among the graph/network classes is done using methods from the [{interg
 
 ## acknowledgments
 
-This package was designed and developed in part through discussions with Yara Skaf, Matt Piekenbrock, and Raoul Wadhwa.
+This package was designed and developed in part through discussions with Matt Piekenbrock and Raoul Wadhwa.
 
 ### resources
 

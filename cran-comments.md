@@ -8,15 +8,25 @@
 
 There were no ERRORs, WARNINGs, or NOTEs.
 
-### R-hub and Win-Builder
+### R-hub
 
 There were no ERRORs or WARNINGs.
 
-The only NOTE mentioned that this is a new submission and flagged the unrecognized word "simplicial", pluralized "simplices".
+There were two NOTEs. One was due to this being a new submission.
+
+The other "[f]ound the following files/directories:" and listed "'lastMiKTeXException'". A web search led me to [{rhub} issue #503](https://github.com/r-hub/rhub/issues/503), which suggests that the issue can be ignored.
+
+The check also flagged the unrecognized word "simplicial", pluralized "simplices".
 This is a standard term in discrete topology.
 
-The R-hub builder flagged a PREPERROR that i could not pin down, but the log flagged only the one NOTE.
+### Win-Builder
 
-## Downstream dependencies
+There were no ERRORs or WARNINGs.
 
-This is a new submission with no dependencies.
+There was one NOTE, due to this being a new submission.
+
+The check flagged the same spellings as the R-hub check.
+
+## Reverse dependencies
+
+This is a new submission with no reverse dependencies.
