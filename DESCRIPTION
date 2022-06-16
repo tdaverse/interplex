@@ -15,9 +15,9 @@ Authors@R: c(
 Description: This is a lightweight package to facilitate coercion (conversion)
     between data structures used by different packages to represent simplicial
     complexes. Currently supported structures are complete lists of simplices as
-    used by 'TDA', simplex tree instances as used by 'simplextree', and the
-    graph/network classes of 'igraph' and 'network' by way of the 'intergraph'
-    package.
+    used by 'TDA'; simplex tree instances, both as used by 'simplextree' and by
+    Python GUDHI (by way of 'reticulate'); and the graph/network classes of
+    'igraph' and 'network' by way of the 'intergraph' package.
 Suggests:
     TDA,
     simplextree (>= 0.9.1),
@@ -30,5 +30,7 @@ Suggests:
     testthat
 License: GPL (>= 3)
 Encoding: UTF-8
+URL: https://github.com/corybrunson/interplex
+BugReports: https://github.com/corybrunson/interplex/issues
 Roxygen: list(markdown = TRUE)
 RoxygenNote: 7.2.0
