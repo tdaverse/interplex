@@ -34,3 +34,7 @@ The method `as_py_gudhi.Rcpp_SimplexTree()` operates differently depending on th
 ## Reverse dependencies
 
 This is a new submission with no reverse dependencies.
+
+## References
+
+There are no references (other than dependencies) to cite for the methods in this package. The data structures coerced between are documented, including with references, in their respective packages.
