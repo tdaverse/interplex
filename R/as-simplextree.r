@@ -1,12 +1,24 @@
 #' @title Coerce objects to class 'simplextree'
 #'
-#' @description This generic function...
+#' @description Coerce objects to 'Rcpp_SimplexTree' objects, as implemented in
+#'   [the simplextree package][simplextree::simplextree-package].
+#'
+#' @details
+#'
+#' `as_simplextree()` is a generic function with specific methods for different
+#' simplicial complex S3 classes. It returns an object of class
+#' ['Rcpp_SimplexTree'][simplextree::Rcpp_SimplexTree], which is an [Rcpp
+#' Module][Rcpp::Module] that exposes an instance of a C++ instance of a simplex
+#' tree.
+#'
+#' @template sec-classes-methods
 #'
 #' @param x An R object to be coerced. See Details.
 #' @param index Integer-valued vertex attribute to be used as 0-simplex indices.
 #'   Ignored if `NULL` (the default).
 #' @param ... Additional arguments passed to methods.
-#' @return An object of class 'simplextree'.
+#' @return An instance of a simplex tree, exposed as an Rcpp Module with class
+#'   'Rcpp_SimplexTree'.
 #' @example inst/examples/ex-as-simplextree.r
 #' @export
 as_simplextree <- function(x, ...) UseMethod("as_simplextree")
@@ -26,12 +38,6 @@ as_simplextree.default <- function(x, ...) {
 #' @rdname as_simplextree
 #' @export
 as_simplextree.Rcpp_SimplexTree <- function(x, ...) x
-
-#' @rdname as_simplextree
-#' @export
-as_simplextree.simplextree <- function(x, ...) {
-  as_simplextree.Rcpp_SimplexTree(x, ...)
-}
 
 #' @rdname as_simplextree
 #' @export

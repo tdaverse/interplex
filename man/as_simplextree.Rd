@@ -5,7 +5,6 @@
 \alias{as_simplextree}
 \alias{as_simplextree.default}
 \alias{as_simplextree.Rcpp_SimplexTree}
-\alias{as_simplextree.simplextree}
 \alias{as_simplextree.gudhi.simplex_tree.SimplexTree}
 \alias{as_simplextree.igraph}
 \alias{as_simplextree.network}
@@ -18,8 +17,6 @@ as_simplextree(x, ...)
 \method{as_simplextree}{default}(x, ...)
 
 \method{as_simplextree}{Rcpp_SimplexTree}(x, ...)
-
-\method{as_simplextree}{simplextree}(x, ...)
 
 \method{as_simplextree}{gudhi.simplex_tree.SimplexTree}(x, ...)
 
@@ -36,10 +33,18 @@ Ignored if \code{NULL} (the default).}
 \item{...}{Additional arguments passed to methods.}
 }
 \value{
-An object of class 'simplextree'.
+An instance of a simplex tree, exposed as an Rcpp Module with class
+'Rcpp_SimplexTree'.
 }
 \description{
-This generic function...
+Coerce objects to 'Rcpp_SimplexTree' objects, as implemented in
+\link[simplextree:simplextree-package]{the simplextree package}.
+}
+\details{
+\code{as_simplextree()} is a generic function with specific methods for different
+simplicial complex S3 classes. It returns an object of class
+\link[simplextree:simplex_tree]{'Rcpp_SimplexTree'}, which is an \link[Rcpp:Module]{Rcpp Module} that exposes an instance of a C++ instance of a simplex
+tree.
 }
 \examples{
 # convert a TDA filtration object
@@ -55,6 +60,7 @@ st_rf2 <- as_simplextree(rf$cmplx)
 print(st_rf2)
 
 \dontrun{
+
 # convert a Python GUDHI simplex tree
 gd <- reticulate::import("gudhi")
 gd_st <- gd$SimplexTree()

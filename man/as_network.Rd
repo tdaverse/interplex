@@ -4,7 +4,6 @@
 \alias{as_network}
 \alias{as_network.default}
 \alias{as_network.Rcpp_SimplexTree}
-\alias{as_network.simplextree}
 \alias{as_network.gudhi.simplex_tree.SimplexTree}
 \alias{as_network.igraph}
 \alias{as_network.network}
@@ -15,8 +14,6 @@ as_network(x, ...)
 \method{as_network}{default}(x, index = NULL, ...)
 
 \method{as_network}{Rcpp_SimplexTree}(x, index = NULL, ...)
-
-\method{as_network}{simplextree}(x, index = NULL, ...)
 
 \method{as_network}{gudhi.simplex_tree.SimplexTree}(x, index = NULL, ...)
 
@@ -36,7 +33,13 @@ as_network(x, ...)
 An object of class 'network'.
 }
 \description{
-This generic function...
+Coerce objects to 'network' objects, as implemented in
+\link[network:network-package]{the network package}.
+}
+\details{
+\code{as_network()} is a generic function with specific methods for different
+simplicial complex S3 classes. It returns a \link[network:network]{network}
+object.
 }
 \examples{
 # convert a TDA filtration object
@@ -58,6 +61,7 @@ nw_st <- as_network(st)
 print(nw_st)
 
 \dontrun{
+
 # convert a Python GUDHI simplex tree
 gd <- reticulate::import("gudhi")
 gd_st <- gd$SimplexTree()

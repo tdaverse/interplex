@@ -1,4 +1,5 @@
 \dontrun{
+
 # print GUDHI simplices
 print_py_gudhi <- function(x) {
   reticulate::iterate(

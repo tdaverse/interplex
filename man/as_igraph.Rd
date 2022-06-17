@@ -4,7 +4,6 @@
 \alias{as_igraph}
 \alias{as_igraph.default}
 \alias{as_igraph.Rcpp_SimplexTree}
-\alias{as_igraph.simplextree}
 \alias{as_igraph.igraph}
 \alias{as_igraph.network}
 \title{Coerce objects to class 'igraph'}
@@ -14,8 +13,6 @@ as_igraph(x, ...)
 \method{as_igraph}{default}(x, index = NULL, ...)
 
 \method{as_igraph}{Rcpp_SimplexTree}(x, index = NULL, ...)
-
-\method{as_igraph}{simplextree}(x, index = NULL, ...)
 
 \method{as_igraph}{igraph}(x, ...)
 
@@ -33,7 +30,12 @@ as_igraph(x, ...)
 An object of class 'igraph'.
 }
 \description{
-This generic function...
+Coerce objects to 'igraph' objects, as implemented in
+\link[igraph:aaa-igraph-package]{the igraph package}.
+}
+\details{
+\code{as_igraph()} is a generic function with specific methods for different
+simplicial complex S3 classes. It returns an \link[igraph:aaa-igraph-package]{igraph} object.
 }
 \examples{
 # convert a TDA filtration object
@@ -55,6 +57,7 @@ ig_st <- as_igraph(st)
 print(ig_st)
 
 \dontrun{
+
 # convert a Python GUDHI simplex tree
 gd <- reticulate::import("gudhi")
 gd_st <- gd$SimplexTree()

@@ -10,5 +10,8 @@
 ^LICENSE\.md$
 ^.*\.Rproj$
 ^\.Rproj\.user$
+
+# R package
+^man-roxygen$
 ^cran-comments\.md$
 ^CRAN-SUBMISSION$

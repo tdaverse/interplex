@@ -4,19 +4,16 @@
 \alias{as_cmplx}
 \alias{as_cmplx.default}
 \alias{as_cmplx.Rcpp_SimplexTree}
-\alias{as_cmplx.simplextree}
 \alias{as_cmplx.gudhi.simplex_tree.SimplexTree}
 \alias{as_cmplx.igraph}
 \alias{as_cmplx.network}
-\title{Coerce objects to lists in the TDA package style}
+\title{Coerce objects to lists of simplices}
 \usage{
 as_cmplx(x, ...)
 
 \method{as_cmplx}{default}(x, ...)
 
 \method{as_cmplx}{Rcpp_SimplexTree}(x, ...)
-
-\method{as_cmplx}{simplextree}(x, ...)
 
 \method{as_cmplx}{gudhi.simplex_tree.SimplexTree}(x, ...)
 
@@ -36,7 +33,16 @@ Ignored if \code{NULL} (the default).}
 A list of integer vectors, each encoding one simplex.
 }
 \description{
-This generic function...
+Coerce objects to lists of simplices, as used by
+\link[TDA:TDA-package]{the TDA package}.
+}
+\details{
+\code{as_cmplx()} is a generic function with specific methods for different
+simplicial complex S3 classes. It returns a list of integer vectors, each of
+which represents a simplex, and \emph{all} simplices are included in the list.
+When a filtration is constructed using \verb{TDA::*Filtration()}, the first named
+element of the returned list, \code{cmplx}, is a list whose \emph{i}th element
+contains the vertices of the \emph{i}th simplex.
 }
 \examples{
 # pick the simplicial complex from a TDA filtration object
@@ -56,6 +62,7 @@ cp_st <- as_cmplx(st)
 print(cp_st)
 
 \dontrun{
+
 # convert a Python GUDHI simplex tree
 gd <- reticulate::import("gudhi")
 gd_st <- gd$SimplexTree()

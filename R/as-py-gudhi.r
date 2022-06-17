@@ -1,12 +1,24 @@
-#' @title Coerce objects to GUDHI simplex trees
-#' 
-#' @description This generic function...
-#' 
+#' @title Coerce objects to Python GUDHI simplex trees
+#'
+#' @description Coerce objects to 'SimplexTree' objects in Python GUDHI,
+#'   accessed via [the reticulate package][reticulate::reticulate].
+#'
+#' @details
+#'
+#' `as_py_gudhi()` is a generic function with specific methods for different
+#' simplicial complex S3 classes. It returns an object of class
+#' 'gudhi.simplex_tree.SimplexTree', which is a
+#' [reticulate][reticulate::reticulate] accessor to a Python object of class
+#' 'SimplexTree' implemented in GUDHI.
+#'
+#' @template sec-classes-methods
+#'
 #' @param x An R object to be coerced. See Details.
 #' @param index Integer-valued vertex attribute to be used as 0-simplex indices.
 #'   Ignored if `NULL` (the default).
 #' @param ... Additional arguments passed to methods.
-#' @return A list of integer vectors, each encoding one simplex.
+#' @return A simplex tree instantiated in Python GUDHI accessed through
+#'   reticulate.
 #' @example inst/examples/ex-as-py-gudhi.r
 #' @author Jason Cory Brunson
 #' @author Yara Skaf
@@ -54,12 +66,6 @@ as_py_gudhi.Rcpp_SimplexTree <- function(x, ...) {
   }
   
   res
-}
-
-#' @rdname as_py_gudhi
-#' @export
-as_py_gudhi.simplextree <- function(x, ...) {
-  as_py_gudhi.Rcpp_SimplexTree(x, ...)
 }
 
 #' @rdname as_py_gudhi

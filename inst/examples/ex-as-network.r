@@ -17,6 +17,7 @@ nw_st <- as_network(st)
 print(nw_st)
 
 \dontrun{
+
 # convert a Python GUDHI simplex tree
 gd <- reticulate::import("gudhi")
 gd_st <- gd$SimplexTree()

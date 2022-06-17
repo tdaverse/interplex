@@ -15,6 +15,7 @@ cp_st <- as_cmplx(st)
 print(cp_st)
 
 \dontrun{
+
 # convert a Python GUDHI simplex tree
 gd <- reticulate::import("gudhi")
 gd_st <- gd$SimplexTree()

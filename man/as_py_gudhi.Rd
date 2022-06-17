@@ -4,18 +4,15 @@
 \alias{as_py_gudhi}
 \alias{as_py_gudhi.default}
 \alias{as_py_gudhi.Rcpp_SimplexTree}
-\alias{as_py_gudhi.simplextree}
 \alias{as_py_gudhi.igraph}
 \alias{as_py_gudhi.network}
-\title{Coerce objects to GUDHI simplex trees}
+\title{Coerce objects to Python GUDHI simplex trees}
 \usage{
 as_py_gudhi(x, ...)
 
 \method{as_py_gudhi}{default}(x, ...)
 
 \method{as_py_gudhi}{Rcpp_SimplexTree}(x, ...)
-
-\method{as_py_gudhi}{simplextree}(x, ...)
 
 \method{as_py_gudhi}{igraph}(x, index = NULL, ...)
 
@@ -30,13 +27,23 @@ as_py_gudhi(x, ...)
 Ignored if \code{NULL} (the default).}
 }
 \value{
-A list of integer vectors, each encoding one simplex.
+A simplex tree instantiated in Python GUDHI accessed through
+reticulate.
 }
 \description{
-This generic function...
+Coerce objects to 'SimplexTree' objects in Python GUDHI,
+accessed via \link[reticulate:reticulate]{the reticulate package}.
+}
+\details{
+\code{as_py_gudhi()} is a generic function with specific methods for different
+simplicial complex S3 classes. It returns an object of class
+'gudhi.simplex_tree.SimplexTree', which is a
+\link[reticulate:reticulate]{reticulate} accessor to a Python object of class
+'SimplexTree' implemented in GUDHI.
 }
 \examples{
 \dontrun{
+
 # print GUDHI simplices
 print_py_gudhi <- function(x) {
   reticulate::iterate(

@@ -1,7 +1,16 @@
 #' @title Coerce objects to class 'igraph'
-#' 
-#' @description This generic function...
-#' 
+#'
+#' @description Coerce objects to 'igraph' objects, as implemented in
+#'   [the igraph package][igraph::igraph-package].
+#'
+#' @details
+#'
+#' `as_igraph()` is a generic function with specific methods for different
+#' simplicial complex S3 classes. It returns an [igraph][igraph::igraph] object.
+#'
+#' @template sec-classes-methods
+#' @template to-graph
+#'
 #' @param x An R object to be coerced. See Details.
 #' @param index Character string to be added as a vertex attribute containing
 #'   0-simplex indices. Ignored if `NULL` (the default).
@@ -54,12 +63,6 @@ as_igraph.Rcpp_SimplexTree <- function(x, index = NULL, ...) {
     res <- igraph::set_vertex_attr(res, index, value = x_vid)
   
   res
-}
-
-#' @rdname as_igraph
-#' @export
-as_igraph.simplextree <- function(x, index = NULL, ...) {
-  as_igraph.Rcpp_SimplexTree(x, index = index, ...)
 }
 
 #' @rdname as_simplextree

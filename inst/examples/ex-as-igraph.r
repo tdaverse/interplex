@@ -17,6 +17,7 @@ ig_st <- as_igraph(st)
 print(ig_st)
 
 \dontrun{
+
 # convert a Python GUDHI simplex tree
 gd <- reticulate::import("gudhi")
 gd_st <- gd$SimplexTree()

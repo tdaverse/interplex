@@ -1,6 +1,18 @@
-#' @title Coerce objects to lists in the TDA package style
+#' @title Coerce objects to lists of simplices
+#'
+#' @description Coerce objects to lists of simplices, as used by
+#'   [the TDA package][TDA::TDA-package].
+#'
+#' @details
+#'
+#' `as_cmplx()` is a generic function with specific methods for different
+#' simplicial complex S3 classes. It returns a list of integer vectors, each of
+#' which represents a simplex, and _all_ simplices are included in the list.
+#' When a filtration is constructed using `TDA::*Filtration()`, the first named
+#' element of the returned list, `cmplx`, is a list whose *i*th element
+#' contains the vertices of the *i*th simplex.
 #' 
-#' @description This generic function...
+#' @template sec-classes-methods
 #' 
 #' @param x An R object to be coerced. See Details.
 #' @param index Integer-valued vertex attribute to be used as 0-simplex indices.
@@ -26,12 +38,6 @@ as_cmplx.default <- function(x, ...) {
 as_cmplx.Rcpp_SimplexTree <- function(x, ...) {
   
   simplextree_list(x)
-}
-
-#' @rdname as_cmplx
-#' @export
-as_cmplx.simplextree <- function(x, ...) {
-  as_cmplx.Rcpp_SimplexTree(x, ...)
 }
 
 #' @rdname as_cmplx

@@ -11,6 +11,7 @@ st_rf2 <- as_simplextree(rf$cmplx)
 print(st_rf2)
 
 \dontrun{
+
 # convert a Python GUDHI simplex tree
 gd <- reticulate::import("gudhi")
 gd_st <- gd$SimplexTree()

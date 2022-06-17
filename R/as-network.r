@@ -1,6 +1,16 @@
 #' @title Coerce objects to class 'network'
 #'
-#' @description This generic function...
+#' @description Coerce objects to 'network' objects, as implemented in
+#'   [the network package][network::network-package].
+#'
+#' @details
+#'
+#' `as_network()` is a generic function with specific methods for different
+#' simplicial complex S3 classes. It returns a [network][network::network]
+#' object.
+#'
+#' @template sec-classes-methods
+#' @template to-graph
 #'
 #' @param x An R object to be coerced. See Details.
 #' @param index Character string to be added as a vertex attribute containing
@@ -77,12 +87,6 @@ as_network.Rcpp_SimplexTree <- function(x, index = NULL, ...) {
     res <- network::set.vertex.attribute(res, index, as.integer(x$vertices))
   
   res
-}
-
-#' @rdname as_network
-#' @export
-as_network.simplextree <- function(x, index = NULL, ...) {
-  as_network.Rcpp_SimplexTree(x, index = index, ...)
 }
 
 #' @rdname as_network
