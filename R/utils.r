@@ -27,7 +27,7 @@ ensure_index <- function(x, index) {
   )
 }
 
-# get list of simplices from a 'simplextree' object
+# get list of simplices from a 'Rcpp_SimplexTree' object
 simplextree_list <- function(x) {
   # extract list of fixed-dimension simplex matrices
   simps <- x$as_list()

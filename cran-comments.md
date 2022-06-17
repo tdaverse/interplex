@@ -16,8 +16,7 @@ There were two NOTEs. One was due to this being a new submission.
 
 The other "[f]ound the following files/directories:" and listed "'lastMiKTeXException'". A web search led me to [{rhub} issue #503](https://github.com/r-hub/rhub/issues/503), which suggests that the issue can be ignored.
 
-The check also flagged the unrecognized word "simplicial", pluralized "simplices".
-This is a standard term in discrete topology.
+In addition to several surnames, the check also flagged the unrecognized words "GUDHI", which is a Python package; "TDA", the standard initialism for "topological data analysis"; and "simplicial", pluralized "simplices", which is a standard term in discrete topology.
 
 ### Win-Builder
 
@@ -34,7 +33,3 @@ The method `as_py_gudhi.Rcpp_SimplexTree()` operates differently depending on th
 ## Reverse dependencies
 
 This is a new submission with no reverse dependencies.
-
-## References
-
-There are no references (other than dependencies) to cite for the methods in this package. The data structures coerced between are documented, including with references, in their respective packages.

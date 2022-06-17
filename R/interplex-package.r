@@ -17,7 +17,7 @@
 #' * a complete list of simplices,
 #'   as stored as `cmplx` values of filtration objects
 #'   in [the TDA package][TDA::TDA-package]
-#' * an object of class 'Rcpp_SimplexTree' or 'simplextree'
+#' * an object of class 'Rcpp_SimplexTree'
 #'   as implemented
 #'   in [the simplextree package][simplextree::simplextree-package]
 #' * an object of class 'gudhi.simplex_tree.SimplexTree'

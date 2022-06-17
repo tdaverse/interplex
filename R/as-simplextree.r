@@ -1,4 +1,4 @@
-#' @title Coerce objects to class 'simplextree'
+#' @title Coerce objects to class 'Rcpp_SimplexTree'
 #'
 #' @description Coerce objects to 'Rcpp_SimplexTree' objects, as implemented in
 #'   [the simplextree package][simplextree::simplextree-package].

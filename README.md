@@ -17,7 +17,7 @@ remotes::install_github("corybrunson/interplex")
 {interplex} includes converters between the following data structures:
 
 * complete lists of simplices, used by the [{TDA}](https://cran.r-project.org/package=TDA) package
-* simplex tree instances of class 'Rcpp_SimplexTree' or 'simplextree',
+* simplex tree instances of class 'Rcpp_SimplexTree',
   provided by the [{simplextree}](https://github.com/peekxc/simplextree) package
 * simplex trees in [Python GUDHI](https://gudhi.inria.fr/python/latest/) imported using the [{reticulate}](https://rstudio.github.io/reticulate/) package
 * objects of class 'igraph', provided by the [{igraph}](https://igraph.org/r/) package

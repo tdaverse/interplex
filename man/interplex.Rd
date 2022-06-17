@@ -20,7 +20,7 @@ the following data structures:
 \item a complete list of simplices,
 as stored as \code{cmplx} values of filtration objects
 in \link[TDA:TDA-package]{the TDA package}
-\item an object of class 'Rcpp_SimplexTree' or 'simplextree'
+\item an object of class 'Rcpp_SimplexTree'
 as implemented
 in \link[simplextree:simplextree-package]{the simplextree package}
 \item an object of class 'gudhi.simplex_tree.SimplexTree'

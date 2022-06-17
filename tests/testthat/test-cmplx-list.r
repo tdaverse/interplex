@@ -25,7 +25,7 @@ test_that("list-to-'network' conversion preserves vertices", {
   expect_true(all(sort_el(cp_rf_el) == sort_el(network::as.edgelist(nw_rf))))
 })
 
-test_that("list-to-'simplextree' conversion preserves 0,1-simplices", {
+test_that("list-to-'Rcpp_SimplexTree' conversion preserves 0,1-simplices", {
   skip_if_not_installed("simplextree")
   st_rf <- as_simplextree(cp_rf)
   expect_equal(cp_rf_vc, st_rf$n_simplices[[1L]])

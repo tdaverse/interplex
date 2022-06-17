@@ -13,7 +13,7 @@ test_that("'igraph'-to-'network' conversion preserves vertices", {
   expect_true(all(ig_kt_el == network::as.edgelist(nw_kt)))
 })
 
-test_that("'igraph'-to-'simplextree' conversion preserves 0,1-simplices", {
+test_that("'igraph'-to-'Rcpp_SimplexTree' conversion preserves 0,1-simplices", {
   skip_if_not_installed("simplextree")
   st_kt <- as_simplextree(ig_kt)
   expect_equal(igraph::gorder(ig_kt), st_kt$n_simplices[[1L]])
@@ -48,7 +48,7 @@ test_that("'igraph'-to-'network' conversion preserves attributes", {
   expect_true("id" %in% network::list.vertex.attributes(nw_kt))
 })
 
-test_that("'igraph'-to-'simplextree' conversion uses indices", {
+test_that("'igraph'-to-'Rcpp_SimplexTree' conversion uses indices", {
   skip_if_not_installed("simplextree")
   st_kt <- as_simplextree(ig_kt, index = "id")
   ig_id <- igraph::vertex_attr(ig_kt, "id")

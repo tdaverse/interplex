@@ -8,7 +8,7 @@
 \alias{as_simplextree.gudhi.simplex_tree.SimplexTree}
 \alias{as_simplextree.igraph}
 \alias{as_simplextree.network}
-\title{Coerce objects to class 'simplextree'}
+\title{Coerce objects to class 'Rcpp_SimplexTree'}
 \usage{
 \method{as_igraph}{gudhi.simplex_tree.SimplexTree}(x, index = NULL, ...)
 
