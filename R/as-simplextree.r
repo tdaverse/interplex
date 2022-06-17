@@ -5,8 +5,8 @@
 #'
 #' @details
 #'
-#' `as_simplextree()` is a generic function with specific methods for different
-#' simplicial complex S3 classes. It returns an object of class
+#' `as_rcpp_simplextree()` is a generic function with specific methods for
+#' different simplicial complex S3 classes. It returns an object of class
 #' ['Rcpp_SimplexTree'][simplextree::Rcpp_SimplexTree], which is an [Rcpp
 #' Module][Rcpp::Module] that exposes an instance of a C++ instance of a simplex
 #' tree.
@@ -21,11 +21,11 @@
 #'   'Rcpp_SimplexTree'.
 #' @example inst/examples/ex-as-simplextree.r
 #' @export
-as_simplextree <- function(x, ...) UseMethod("as_simplextree")
+as_rcpp_simplextree <- function(x, ...) UseMethod("as_rcpp_simplextree")
 
-#' @rdname as_simplextree
+#' @rdname as_rcpp_simplextree
 #' @export
-as_simplextree.default <- function(x, ...) {
+as_rcpp_simplextree.default <- function(x, ...) {
   x <- ensure_cmplx(x)
   x <- ensure_list(x)
   
@@ -35,13 +35,13 @@ as_simplextree.default <- function(x, ...) {
   res
 }
 
-#' @rdname as_simplextree
+#' @rdname as_rcpp_simplextree
 #' @export
-as_simplextree.Rcpp_SimplexTree <- function(x, ...) x
+as_rcpp_simplextree.Rcpp_SimplexTree <- function(x, ...) x
 
-#' @rdname as_simplextree
+#' @rdname as_rcpp_simplextree
 #' @export
-as_simplextree.gudhi.simplex_tree.SimplexTree <- function(x, ...) {
+as_rcpp_simplextree.gudhi.simplex_tree.SimplexTree <- function(x, ...) {
   
   # initialize simplex tree
   res <- simplextree::simplex_tree()
@@ -51,9 +51,9 @@ as_simplextree.gudhi.simplex_tree.SimplexTree <- function(x, ...) {
   res
 }
 
-#' @rdname as_simplextree
+#' @rdname as_rcpp_simplextree
 #' @export
-as_simplextree.igraph <- function(x, index = NULL, ...) {
+as_rcpp_simplextree.igraph <- function(x, index = NULL, ...) {
   if (! is.null(index)) ensure_index(x, index)
   
   # generate vertex list
@@ -75,13 +75,13 @@ as_simplextree.igraph <- function(x, index = NULL, ...) {
   res
 }
 
-#' @rdname as_simplextree
+#' @rdname as_rcpp_simplextree
 #' @export
-as_simplextree.network <- function(x, index = NULL, ...) {
+as_rcpp_simplextree.network <- function(x, index = NULL, ...) {
   
   # coerce to an igraph object
   x <- intergraph::asIgraph(x, ...)
   
   # invoke 'igraph' method
-  as_simplextree(x, index = index)
+  as_rcpp_simplextree(x, index = index)
 }

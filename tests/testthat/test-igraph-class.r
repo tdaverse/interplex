@@ -15,14 +15,14 @@ test_that("'igraph'-to-'network' conversion preserves vertices", {
 
 test_that("'igraph'-to-'Rcpp_SimplexTree' conversion preserves 0,1-simplices", {
   skip_if_not_installed("simplextree")
-  st_kt <- as_simplextree(ig_kt)
+  st_kt <- as_rcpp_simplextree(ig_kt)
   expect_equal(igraph::gorder(ig_kt), st_kt$n_simplices[[1L]])
   expect_true(all(ig_kt_el == st_kt$edges))
 })
 
 test_that("'igraph'-to-GUDHI conversion preserves 0,1-simplices", {
   skip_if_not_installed("reticulate")
-  gd_kt <- as_py_gudhi(ig_kt)
+  gd_kt <- as_py_gudhi_simplextree(ig_kt)
   expect_equal(igraph::gorder(ig_kt), gd_kt$num_vertices())
   gd_el <- reticulate::iterate(gd_kt$get_skeleton(1L), function(s) s[[1L]])
   gd_el <- sort_el(do.call(rbind, gd_el[sapply(gd_el, length) == 2L]))
@@ -50,7 +50,7 @@ test_that("'igraph'-to-'network' conversion preserves attributes", {
 
 test_that("'igraph'-to-'Rcpp_SimplexTree' conversion uses indices", {
   skip_if_not_installed("simplextree")
-  st_kt <- as_simplextree(ig_kt, index = "id")
+  st_kt <- as_rcpp_simplextree(ig_kt, index = "id")
   ig_id <- igraph::vertex_attr(ig_kt, "id")
   expect_equal(sort(ig_id), st_kt$vertices)
   # reindex and sort edges by index

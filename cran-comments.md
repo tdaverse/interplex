@@ -28,7 +28,7 @@ The check flagged the same spellings as the R-hub check.
 
 ## Version dependencies
 
-The method `as_py_gudhi.Rcpp_SimplexTree()` operates differently depending on the version of {simplextree} installed. This has not been flagged by documentation and checks but may be important for the maintainers to know.
+The method `as_py_gudhi_simplextree.Rcpp_SimplexTree()` operates differently depending on the version of {simplextree} installed. This has not been flagged by documentation and checks but may be important for the maintainers to know.
 
 ## Reverse dependencies
 

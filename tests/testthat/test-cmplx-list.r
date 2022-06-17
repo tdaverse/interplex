@@ -27,14 +27,14 @@ test_that("list-to-'network' conversion preserves vertices", {
 
 test_that("list-to-'Rcpp_SimplexTree' conversion preserves 0,1-simplices", {
   skip_if_not_installed("simplextree")
-  st_rf <- as_simplextree(cp_rf)
+  st_rf <- as_rcpp_simplextree(cp_rf)
   expect_equal(cp_rf_vc, st_rf$n_simplices[[1L]])
   expect_true(all(sort_el(cp_rf_el) == st_rf$edges))
 })
 
 test_that("list-to-GUDHI conversion preserves all simplices", {
   skip_if_not_installed("reticulate")
-  gd_rf <- as_py_gudhi(cp_rf)
+  gd_rf <- as_py_gudhi_simplextree(cp_rf)
   expect_equal(cp_rf_vc, gd_rf$num_vertices())
   gd_sl <- reticulate::iterate(gd_rf$get_simplices(), function(s) s[[1L]])
   expect_equal(sort_lst(gd_sl), sort_lst(cp_rf))

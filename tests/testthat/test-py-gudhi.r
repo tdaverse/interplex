@@ -25,7 +25,7 @@ test_that("GUDHI-to-'network' conversion preserves vertices", {
 
 test_that("GUDHI-to-'Rcpp_SimplexTree' conversion preserves all simplices", {
   skip_if_not_installed("simplextree")
-  st_ex <- as_simplextree(gd_ex)
+  st_ex <- as_rcpp_simplextree(gd_ex)
   expect_equal(gd_ex$num_vertices(), st_ex$n_simplices[[1L]])
   expect_identical(
     sort_lst(reticulate::iterate(gd_ex$get_simplices(), function(s) s[[1L]])),

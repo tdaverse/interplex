@@ -65,7 +65,7 @@ as_igraph.Rcpp_SimplexTree <- function(x, index = NULL, ...) {
   res
 }
 
-#' @rdname as_simplextree
+#' @rdname as_igraph
 #' @export
 as_igraph.gudhi.simplex_tree.SimplexTree <- function(x, index = NULL, ...) {
   

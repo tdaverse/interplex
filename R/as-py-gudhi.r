@@ -5,8 +5,8 @@
 #'
 #' @details
 #'
-#' `as_py_gudhi()` is a generic function with specific methods for different
-#' simplicial complex S3 classes. It returns an object of class
+#' `as_py_gudhi_simplextree()` is a generic function with specific methods for
+#' different simplicial complex S3 classes. It returns an object of class
 #' 'gudhi.simplex_tree.SimplexTree', which is a
 #' [reticulate][reticulate::reticulate] accessor to a Python object of class
 #' 'SimplexTree' implemented in GUDHI.
@@ -23,11 +23,11 @@
 #' @author Jason Cory Brunson
 #' @author Yara Skaf
 #' @export
-as_py_gudhi <- function(x, ...) UseMethod("as_py_gudhi")
+as_py_gudhi_simplextree <- function(x, ...) UseMethod("as_py_gudhi_simplextree")
 
-#' @rdname as_py_gudhi
+#' @rdname as_py_gudhi_simplextree
 #' @export
-as_py_gudhi.default <- function(x, ...) {
+as_py_gudhi_simplextree.default <- function(x, ...) {
   x <- ensure_cmplx(x)
   x <- ensure_list(x)
   # import GUDHI
@@ -40,9 +40,9 @@ as_py_gudhi.default <- function(x, ...) {
   res
 }
 
-#' @rdname as_py_gudhi
+#' @rdname as_py_gudhi_simplextree
 #' @export
-as_py_gudhi.Rcpp_SimplexTree <- function(x, ...) {
+as_py_gudhi_simplextree.Rcpp_SimplexTree <- function(x, ...) {
   # import GUDHI
   gd <- reticulate::import("gudhi")
   
@@ -68,9 +68,9 @@ as_py_gudhi.Rcpp_SimplexTree <- function(x, ...) {
   res
 }
 
-#' @rdname as_py_gudhi
+#' @rdname as_py_gudhi_simplextree
 #' @export
-as_py_gudhi.igraph <- function(x, index = NULL, ...) {
+as_py_gudhi_simplextree.igraph <- function(x, index = NULL, ...) {
   if (! is.null(index)) ensure_index(x, index)
   # import GUDHI
   gd <- reticulate::import("gudhi")
@@ -91,13 +91,13 @@ as_py_gudhi.igraph <- function(x, index = NULL, ...) {
   res
 }
 
-#' @rdname as_py_gudhi
+#' @rdname as_py_gudhi_simplextree
 #' @export
-as_py_gudhi.network <- function(x, index = NULL, ...) {
+as_py_gudhi_simplextree.network <- function(x, index = NULL, ...) {
   
   # coerce to an igraph object
   x <- intergraph::asIgraph(x, ...)
   
   # invoke 'igraph' method
-  as_py_gudhi(x, index = index)
+  as_py_gudhi_simplextree(x, index = index)
 }

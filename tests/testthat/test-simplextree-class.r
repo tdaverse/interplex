@@ -29,7 +29,7 @@ test_that("'Rcpp_SimplexTree'-to-list conversion preserves 0,1-simplices", {
 
 test_that("'Rcpp_SimplexTree'-to-GUDHI conversion preserves all simplices", {
   skip_if_not_installed("reticulate")
-  gd_ex <- as_py_gudhi(st_ex)
+  gd_ex <- as_py_gudhi_simplextree(st_ex)
   expect_equal(length(st_ex$vertices), gd_ex$num_vertices())
   gd_sl <- reticulate::iterate(gd_ex$get_simplices(), function(s) s[[1L]])
   gd_sl <- sort_lst(gd_sl)

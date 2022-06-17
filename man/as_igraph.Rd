@@ -4,6 +4,7 @@
 \alias{as_igraph}
 \alias{as_igraph.default}
 \alias{as_igraph.Rcpp_SimplexTree}
+\alias{as_igraph.gudhi.simplex_tree.SimplexTree}
 \alias{as_igraph.igraph}
 \alias{as_igraph.network}
 \title{Coerce objects to class 'igraph'}
@@ -13,6 +14,8 @@ as_igraph(x, ...)
 \method{as_igraph}{default}(x, index = NULL, ...)
 
 \method{as_igraph}{Rcpp_SimplexTree}(x, index = NULL, ...)
+
+\method{as_igraph}{gudhi.simplex_tree.SimplexTree}(x, index = NULL, ...)
 
 \method{as_igraph}{igraph}(x, ...)
 
