@@ -1,6 +1,6 @@
 Package: interplex
 Title: Coercion Methods for Simplicial Complex Data Structures
-Version: 0.1.0.9999
+Version: 0.1.0.0001
 Authors@R: c(
     person(
         given = "Jason Cory",
