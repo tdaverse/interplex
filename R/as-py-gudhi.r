@@ -27,16 +27,26 @@ as_py_gudhi_simplextree <- function(x, ...) UseMethod("as_py_gudhi_simplextree")
 
 #' @rdname as_py_gudhi_simplextree
 #' @export
-as_py_gudhi_simplextree.default <- function(x, ...) {
-  x <- ensure_cmplx(x)
-  x <- ensure_list(x)
+as_py_gudhi_simplextree.default <- function(
+    x, check_structure = TRUE, drop_values = FALSE, ...
+) {
+  # `x` should be structured as a filtration returned by `TDA::*Filtration()`
+  if (check_structure) check_tda_filtration(x)
+  
   # import GUDHI
-  # -+- Is it possible to detect already imported, and as what? -+-
+  # TODO: Detect whether and under what name GUDHI is already imported.
   gd <- reticulate::import("gudhi")
   
   # insert all simplices into a new simplex tree
   res <- gd$SimplexTree()
-  for (s in x) res$insert(as.list(s))
+  if (drop_values) {
+    for (s in x) res$insert(as.list(s))
+  } else {
+    x_iter <- seq_along(x$cmplx)
+    if (! x$increasing) x_iter <- rev(x_iter)
+    for (i in x_iter)
+      res$insert(simplex = as.list(x$cmplx[[i]]), filtration = x$values[[i]])
+  }
   res
 }
 
@@ -67,12 +77,38 @@ as_py_gudhi_simplextree.Rcpp_SimplexTree <- function(x, ...) {
 
 #' @rdname as_py_gudhi_simplextree
 #' @export
-as_py_gudhi_simplextree.igraph <- function(x, index = NULL, ...) {
-  if (! is.null(index)) ensure_index(x, index)
+as_py_gudhi_simplextree.Rcpp_Filtration <- function(x, ...) {
   # import GUDHI
   gd <- reticulate::import("gudhi")
   
-  # generate vertex list
+  # insert simplices into a new simplex tree in order of value (weight)
+  res <- gd$SimplexTree()
+  .simplextree_version <- utils::packageVersion("simplextree")
+  if (.simplextree_version >= "1.0.1") {
+    for (i in seq_along(x$simplices))
+      res$insert(
+        simplex = as.list(x$simplices[[i]]),
+        filtration = x$weights[[i]]
+      )
+  } else {
+    stop("No method available for simplextree v", .simplextree_version)
+  }
+  
+  res
+}
+
+#' @rdname as_py_gudhi_simplextree
+#' @export
+as_py_gudhi_simplextree.igraph <- function(x, index = NULL, value = NULL, ...) {
+  # check compatibility of 'index' and 'value' attributes
+  # (does not check that filtration respects faces)
+  if (! is.null(index)) check_index(x, index)
+  if (! is.null(value)) check_value(x, value)
+  
+  # import GUDHI
+  gd <- reticulate::import("gudhi")
+  
+  # generate vertex vector (for use by following code)
   vl <- if (is.null(index)) igraph::V(x) else igraph::vertex_attr(x, index)
   # generate edge list
   el <- apply(
@@ -80,21 +116,37 @@ as_py_gudhi_simplextree.igraph <- function(x, index = NULL, ...) {
     1L, identity, simplify = FALSE
   )
   if (! is.null(index)) el <- lapply(el, function(e) vl[e])
+  # coerce to vertex list
   vl <- as.list(vl)
   
   # insert vertices and edges into a new simplex tree
   res <- gd$SimplexTree()
-  for (s in c(vl, el)) res$insert(as.list(s))
+  if (is.null(value)) {
+    for (s in c(vl, el)) res$insert(as.list(s))
+  } else {
+    for (i in seq_along(vl))
+      res$insert(
+        simplex = as.list(vl[[i]]),
+        filtration = igraph::vertex_attr(x, value)[[i]]
+      )
+    for (i in seq_along(el))
+      res$insert(
+        simplex = as.list(el[[i]]),
+        filtration = igraph::edge_attr(x, value)[[i]]
+      )
+  }
   res
 }
 
 #' @rdname as_py_gudhi_simplextree
 #' @export
-as_py_gudhi_simplextree.network <- function(x, index = NULL, ...) {
+as_py_gudhi_simplextree.network <- function(
+    x, index = NULL, value = NULL, ...
+) {
   
   # coerce to an igraph object
   x <- intergraph::asIgraph(x, ...)
   
   # invoke 'igraph' method
-  as_py_gudhi_simplextree(x, index = index)
+  as_py_gudhi_simplextree(x, index = index, value = value)
 }

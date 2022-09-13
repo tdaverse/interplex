@@ -50,7 +50,7 @@ as_cmplx.gudhi.simplex_tree.SimplexTree <- function(x, ...) {
 #' @rdname as_cmplx
 #' @export
 as_cmplx.igraph <- function(x, index = NULL, ...) {
-  if (! is.null(index)) ensure_index(x, index)
+  if (! is.null(index)) check_index(x, index)
   
   # generate vertex list
   vl <- if (is.null(index)) igraph::V(x) else igraph::vertex_attr(x, index)

@@ -4,19 +4,22 @@
 \alias{as_py_gudhi_simplextree}
 \alias{as_py_gudhi_simplextree.default}
 \alias{as_py_gudhi_simplextree.Rcpp_SimplexTree}
+\alias{as_py_gudhi_simplextree.Rcpp_Filtration}
 \alias{as_py_gudhi_simplextree.igraph}
 \alias{as_py_gudhi_simplextree.network}
 \title{Coerce objects to Python GUDHI simplex trees}
 \usage{
 as_py_gudhi_simplextree(x, ...)
 
-\method{as_py_gudhi_simplextree}{default}(x, ...)
+\method{as_py_gudhi_simplextree}{default}(x, check_structure = TRUE, drop_values = FALSE, ...)
 
 \method{as_py_gudhi_simplextree}{Rcpp_SimplexTree}(x, ...)
 
-\method{as_py_gudhi_simplextree}{igraph}(x, index = NULL, ...)
+\method{as_py_gudhi_simplextree}{Rcpp_Filtration}(x, ...)
 
-\method{as_py_gudhi_simplextree}{network}(x, index = NULL, ...)
+\method{as_py_gudhi_simplextree}{igraph}(x, index = NULL, value = NULL, ...)
+
+\method{as_py_gudhi_simplextree}{network}(x, index = NULL, value = NULL, ...)
 }
 \arguments{
 \item{x}{An R object to be coerced. See Details.}
@@ -45,6 +48,7 @@ different simplicial complex S3 classes. It returns an object of class
 \dontrun{
 
 # print GUDHI simplices
+# TODO: print filtration value beside each simplex
 print_py_gudhi <- function(x) {
   reticulate::iterate(
     x$get_skeleton(x$dimension()),
@@ -62,21 +66,28 @@ rf <- TDA::ripsFiltration(
 print(rf$cmplx)
 gd_rf <- as_py_gudhi_simplextree(rf)
 print_py_gudhi(gd_rf)
-gd_rf2 <- as_py_gudhi_simplextree(rf$cmplx)
+# can no longer pass the `cmplx` element alone, but can reformat it
+tda_rf <- as_tda_filtration(rf$cmplx)
+gd_rf2 <- as_py_gudhi_simplextree(tda_rf)
 print_py_gudhi(gd_rf2)
 
-# convert a simplextree object
+# convert a simplextree simplicial complex
 st <- simplextree::simplex_tree()
 st$insert(list(3:5, 5:6, 8))
 gd_st <- as_py_gudhi_simplextree(st)
 print_py_gudhi(gd_st)
+
+# convert a simplextree filtration
+d <- dist(cbind(c(0,1.5,0),c(0,0,2.75)))
+sf <- simplextree::rips(d, eps = 3, filtered = TRUE)
+gd_sf <- as_py_gudhi_simplextree(sf)
+print_py_gudhi(gd_sf)
 
 # convert an igraph object
 ig <- igraph::graph(c(1,2, 2,3, 1,3, 3,4))
 print(ig)
 gd_ig <- as_py_gudhi_simplextree(ig)
 print_py_gudhi(gd_ig)
-
 # specify 0-simplex indices
 set.seed(0L)
 ig <- igraph::set_vertex_attr(ig, "id", value = sample(igraph::vcount(ig)) + 1L)
@@ -84,6 +95,11 @@ igraph::V(ig)$id
 igraph::as_edgelist(ig)
 gd_ig2 <- as_py_gudhi_simplextree(ig, index = "id")
 print_py_gudhi(gd_ig2)
+# specify filtration values
+ig <- igraph::set.vertex.attribute(ig, "filt", value = c(0, .1, .1, .2))
+ig <- igraph::set.edge.attribute(ig, "filt", value = c(.1, .2, .2, .3))
+gd_ig3 <- as_py_gudhi_simplextree(ig, index = "id", value = "filt")
+print_py_gudhi(gd_ig3)
 
 # convert a network object
 el <- data.frame(tails = c(1, 2, 1, 3), heads = c(2, 3, 3, 4))
@@ -91,6 +107,14 @@ nw <- network::network.edgelist(el, network::network.initialize(4))
 print(nw)
 gd_nw <- as_py_gudhi_simplextree(nw)
 print_py_gudhi(gd_nw)
+# specify indices and values
+set.seed(0L)
+nw <- network::set.vertex.attribute(nw, "id", sample(igraph::vcount(ig)) + 1L)
+nw <- network::set.vertex.attribute(nw, "filt", c(0, .1, .1, .2))
+nw <- network::set.edge.attribute(nw, "filt", c(.1, .2, .2, .3))
+gd_nw2 <- as_py_gudhi_simplextree(nw, index = "id", value = "filt")
+print_py_gudhi(gd_nw2)
+
 }
 }
 \author{

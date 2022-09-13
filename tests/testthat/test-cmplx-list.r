@@ -7,9 +7,9 @@ t <- 2 * pi * c(0, 1, 3, 6) / 7
 cp_rf <- TDA::ripsFiltration(
   cbind(x = cos(t), y = sin(t)),
   maxdimension = 2L, maxscale = 1.7
-)$cmplx
-cp_rf_vc <- length(unique(unlist(cp_rf)))
-cp_rf_el <- t(sapply(cp_rf[sapply(cp_rf, length) == 2L], identity))
+)
+cp_rf_vc <- length(unique(unlist(cp_rf$cmplx)))
+cp_rf_el <- t(sapply(cp_rf$cmplx[sapply(cp_rf$cmplx, length) == 2L], identity))
 
 test_that("list-to-'igraph' conversion preserves vertices", {
   skip_if_not_installed("igraph")
@@ -37,7 +37,7 @@ test_that("list-to-GUDHI conversion preserves all simplices", {
   gd_rf <- as_py_gudhi_simplextree(cp_rf)
   expect_equal(cp_rf_vc, gd_rf$num_vertices())
   gd_sl <- reticulate::iterate(gd_rf$get_simplices(), function(s) s[[1L]])
-  expect_equal(sort_lst(gd_sl), sort_lst(cp_rf))
+  expect_equal(sort_lst(gd_sl), sort_lst(cp_rf$cmplx))
 })
 
 cp_rf <- lapply(cp_rf, function(s) s + 2L)

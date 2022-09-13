@@ -40,7 +40,7 @@ Coerce objects to 'Rcpp_SimplexTree' objects, as implemented in
 \details{
 \code{as_rcpp_simplextree()} is a generic function with specific methods for
 different simplicial complex S3 classes. It returns an object of class
-\link[simplextree:simplex_tree]{'Rcpp_SimplexTree'}, which is an \link[Rcpp:Module]{Rcpp Module} that exposes an instance of a C++ instance of a simplex
+\link[simplextree:Rcpp_SimplexTree]{'Rcpp_SimplexTree'}, which is an \link[Rcpp:Module]{Rcpp Module} that exposes an instance of a C++ instance of a simplex
 tree.
 }
 \examples{
