@@ -27,7 +27,13 @@ as_py_gudhi_simplextree <- function(x, ...) UseMethod("as_py_gudhi_simplextree")
 
 #' @rdname as_py_gudhi_simplextree
 #' @export
-as_py_gudhi_simplextree.default <- function(
+as_py_gudhi_simplextree.default <- function(x, ...) {
+  stop("Cannot coerce class '", class(x)[[1L]], "' to a GUDHI 'SimplexTree'")
+}
+
+#' @rdname as_py_gudhi_simplextree
+#' @export
+as_py_gudhi_simplextree.list <- function(
     x, check_structure = TRUE, drop_values = FALSE, ...
 ) {
   # `x` should be structured as a filtration returned by `TDA::*Filtration()`
@@ -69,7 +75,7 @@ as_py_gudhi_simplextree.Rcpp_SimplexTree <- function(x, ...) {
     # loop insertion over serialization
     for (s in x$serialize()) res$insert(as.list(s))
   } else {
-    stop("No method available for simplextree v", .simplextree_version)
+    stop("No method available for {simplextree} v", .simplextree_version)
   }
   
   res

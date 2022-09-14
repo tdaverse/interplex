@@ -31,7 +31,7 @@ gd_st <- as_py_gudhi_simplextree(st)
 print_py_gudhi(gd_st)
 
 # convert a simplextree filtration
-d <- dist(cbind(c(0,1.5,0),c(0,0,2.75)))
+d <- dist(cbind(c(0, 1.5, 0), c(0, 0, 2.75)))
 sf <- simplextree::rips(d, eps = 3, filtered = TRUE)
 gd_sf <- as_py_gudhi_simplextree(sf)
 print_py_gudhi(gd_sf)
@@ -67,5 +67,4 @@ nw <- network::set.vertex.attribute(nw, "filt", c(0, .1, .1, .2))
 nw <- network::set.edge.attribute(nw, "filt", c(.1, .2, .2, .3))
 gd_nw2 <- as_py_gudhi_simplextree(nw, index = "id", value = "filt")
 print_py_gudhi(gd_nw2)
-
 }

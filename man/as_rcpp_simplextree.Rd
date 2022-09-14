@@ -3,8 +3,11 @@
 \name{as_rcpp_simplextree}
 \alias{as_rcpp_simplextree}
 \alias{as_rcpp_simplextree.default}
+\alias{as_rcpp_simplextree.list}
 \alias{as_rcpp_simplextree.Rcpp_SimplexTree}
 \alias{as_rcpp_simplextree.gudhi.simplex_tree.SimplexTree}
+\alias{as_rcpp_simplextree.gudhi.rips_complex.RipsComplex}
+\alias{as_rcpp_simplextree.gudhi.alpha_complex.AlphaComplex}
 \alias{as_rcpp_simplextree.igraph}
 \alias{as_rcpp_simplextree.network}
 \title{Coerce objects to class 'Rcpp_SimplexTree'}
@@ -13,13 +16,19 @@ as_rcpp_simplextree(x, ...)
 
 \method{as_rcpp_simplextree}{default}(x, ...)
 
+\method{as_rcpp_simplextree}{list}(x, check_structure = TRUE, drop_values = FALSE, ...)
+
 \method{as_rcpp_simplextree}{Rcpp_SimplexTree}(x, ...)
 
-\method{as_rcpp_simplextree}{gudhi.simplex_tree.SimplexTree}(x, ...)
+\method{as_rcpp_simplextree}{gudhi.simplex_tree.SimplexTree}(x, drop_values = FALSE, ...)
 
-\method{as_rcpp_simplextree}{igraph}(x, index = NULL, ...)
+\method{as_rcpp_simplextree}{gudhi.rips_complex.RipsComplex}(x, drop_values = FALSE, ...)
 
-\method{as_rcpp_simplextree}{network}(x, index = NULL, ...)
+\method{as_rcpp_simplextree}{gudhi.alpha_complex.AlphaComplex}(x, drop_values = FALSE, ...)
+
+\method{as_rcpp_simplextree}{igraph}(x, index = NULL, value = NULL, ...)
+
+\method{as_rcpp_simplextree}{network}(x, index = NULL, value = NULL, ...)
 }
 \arguments{
 \item{x}{An R object to be coerced. See Details.}
@@ -40,7 +49,7 @@ Coerce objects to 'Rcpp_SimplexTree' objects, as implemented in
 \details{
 \code{as_rcpp_simplextree()} is a generic function with specific methods for
 different simplicial complex S3 classes. It returns an object of class
-\link[simplextree:Rcpp_SimplexTree]{'Rcpp_SimplexTree'}, which is an \link[Rcpp:Module]{Rcpp Module} that exposes an instance of a C++ instance of a simplex
+\link[simplextree:simplex_tree]{'Rcpp_SimplexTree'}, which is an \link[Rcpp:Module]{Rcpp Module} that exposes an instance of a C++ instance of a simplex
 tree.
 }
 \examples{
@@ -53,7 +62,9 @@ rf <- TDA::ripsFiltration(
 print(rf$cmplx)
 st_rf <- as_rcpp_simplextree(rf)
 print(st_rf)
-st_rf2 <- as_rcpp_simplextree(rf$cmplx)
+# simplicial complex with trivial filtration
+tda_rf <- as_tda_filtration(rf$cmplx)
+st_rf2 <- as_rcpp_simplextree(tda_rf, drop_values = TRUE)
 print(st_rf2)
 
 \dontrun{
@@ -64,6 +75,14 @@ gd_st <- gd$SimplexTree()
 for (s in list(3:5, 5:6, 8)) gd_st$insert(as.list(s))
 st_gd <- as_rcpp_simplextree(gd_st)
 st_gd$as_list()
+# convert a Python GUDHI simplicial filtration
+d <- cbind(c(0, 1.5, 0), c(0, 0, 2.75))
+gd_rc <- gd$RipsComplex(points = d)
+st_gd2 <- as_rcpp_simplextree(gd_rc)
+st_gd2$as_list()
+gd_ac <- gd$AlphaComplex(points = d)
+st_gd3 <- as_rcpp_simplextree(gd_ac)
+st_gd3$as_list()
 }
 
 # convert an igraph object
@@ -71,7 +90,6 @@ ig <- igraph::graph(c(1,2, 2,3, 1,3, 3,4))
 print(ig)
 st_ig <- as_rcpp_simplextree(ig)
 print(st_ig)
-
 # specify 0-simplex indices
 set.seed(0L)
 ig <- igraph::set_vertex_attr(ig, "id", value = sample(igraph::vcount(ig)) + 1L)
@@ -80,6 +98,11 @@ igraph::as_edgelist(ig)
 st_ig <- as_rcpp_simplextree(ig, index = "id")
 st_ig$vertices
 st_ig$edges
+# specify filtration values
+ig <- igraph::set.vertex.attribute(ig, "filt", value = c(0, .1, .1, .2))
+ig <- igraph::set.edge.attribute(ig, "filt", value = c(.1, .2, .2, .3))
+st_ig3 <- as_py_gudhi_simplextree(ig, value = "filt")
+print(st_ig3)
 
 # convert a network object
 el <- data.frame(tails = c(1, 2, 1, 3), heads = c(2, 3, 3, 4))
