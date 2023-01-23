@@ -1,3 +1,7 @@
+# interplex 0.1.1
+
+Per CRAN requirements, this patch imposes conditions on examples that use packages in `Suggests:`.
+
 # interplex 0.1.0
 
 This first release includes converters between the following data structures:
