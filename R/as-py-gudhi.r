@@ -31,7 +31,7 @@ as_py_gudhi_simplextree.default <- function(x, ...) {
   x <- ensure_cmplx(x)
   x <- ensure_list(x)
   # import GUDHI
-  # -+- Is it possible to detect already imported, and as what? -+-
+  # TODO: Is it possible to detect already imported, and as what?
   gd <- reticulate::import("gudhi")
   
   # insert all simplices into a new simplex tree

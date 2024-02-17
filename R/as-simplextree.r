@@ -7,7 +7,7 @@
 #'
 #' `as_rcpp_simplextree()` is a generic function with specific methods for
 #' different simplicial complex S3 classes. It returns an object of class
-#' ['Rcpp_SimplexTree'][simplextree::Rcpp_SimplexTree], which is an [Rcpp
+#' ['Rcpp_SimplexTree'][simplextree::SimplexTree], which is an [Rcpp
 #' Module][Rcpp::Module] that exposes an instance of a C++ instance of a simplex
 #' tree.
 #'

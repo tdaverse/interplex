@@ -2,7 +2,7 @@ context("lists in the TDA package `cmplx` list format")
 
 skip_if_not_installed("TDA")
 
-# -+- use a more complicated example -+-
+# TODO: use a more complicated example
 t <- 2 * pi * c(0, 1, 3, 6) / 7
 cp_rf <- TDA::ripsFiltration(
   cbind(x = cos(t), y = sin(t)),
