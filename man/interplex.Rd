@@ -2,6 +2,7 @@
 % Please edit documentation in R/interplex-package.r
 \docType{package}
 \name{interplex}
+\alias{interplex-package}
 \alias{interplex}
 \title{\strong{interplex} package}
 \description{
@@ -33,4 +34,21 @@ in \link[igraph:aaa-igraph-package]{the igraph package}
 as implemented
 in \link[network:network-package]{the network package}
 }
+}
+\seealso{
+Useful links:
+\itemize{
+  \item \url{https://github.com/tdaverse/interplex}
+  \item Report bugs at \url{https://github.com/tdaverse/interplex/issues}
+}
+
+}
+\author{
+\strong{Maintainer}: Jason Cory Brunson \email{cornelioid@gmail.com} (\href{https://orcid.org/0000-0003-3126-9494}{ORCID})
+
+Other contributors:
+\itemize{
+  \item Yara Skaf [contributor]
+}
+
 }

@@ -30,6 +30,5 @@
 #'   as implemented
 #'   in [the network package][network::network-package]
 
-#' @docType package
 #' @name interplex
-NULL
+"_PACKAGE"

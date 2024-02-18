@@ -1,6 +1,6 @@
 Package: interplex
 Title: Coercion Methods for Simplicial Complex Data Structures
-Version: 0.1.0.0001
+Version: 0.1.1.0001
 Authors@R: c(
     person(
         given = "Jason Cory",
@@ -25,19 +25,21 @@ Description: Computational topology, which enables topological data analysis
     <doi:10.1007/s00453-014-9887-3> as implemented in 'simplextree' and in
     Python GUDHI (by way of 'reticulate'); and the graph classes of 'igraph' and
     'network', by way of the 'intergraph' package.
-Suggests:
-    TDA,
-    simplextree (>= 0.9.1),
+Imports:
+    intergraph,
     igraph (>= 0.6-0),
     network (>= 1.4-2),
-    intergraph,
-    reticulate,
+    simplextree (>= 0.9.1),
+    reticulate
+Suggests:
+    igraphdata,
+    TDA,
     roxygen2,
     rmarkdown,
     testthat
 License: GPL (>= 3)
 Encoding: UTF-8
-URL: https://github.com/corybrunson/interplex
-BugReports: https://github.com/corybrunson/interplex/issues
+URL: https://github.com/tdaverse/interplex
+BugReports: https://github.com/tdaverse/interplex/issues
 Roxygen: list(markdown = TRUE)
-RoxygenNote: 7.2.1
+RoxygenNote: 7.3.1
