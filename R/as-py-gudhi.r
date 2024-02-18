@@ -51,8 +51,10 @@ as_py_gudhi_simplextree.Rcpp_SimplexTree <- function(x, ...) {
   .simplextree_version <- utils::packageVersion("simplextree")
   if (.simplextree_version >= "1.0.1") {
     # traverse insertion over maximal simplices
-    simplextree::traverse(
-      simplextree::maximal(x),
+    traverse <- utils::getFromNamespace("traverse", "simplextree")
+    maximal <- utils::getFromNamespace("maximal", "simplextree")
+    traverse(
+      maximal(x),
       function(s) res$insert(as.list(s))
     )
   } else if (.simplextree_version == "0.9.1") {

@@ -1,6 +1,6 @@
 context("'Rcpp_SimplexTree' objects")
 
-skip_if_not_installed("simplextree")
+# skip_if_not_installed("simplextree")
 
 st_ex <- simplextree::simplex_tree()
 st_ex$insert(list(1:2, 2:5, 5:6, c(4,7), c(5,7), 6:7, 7:9))

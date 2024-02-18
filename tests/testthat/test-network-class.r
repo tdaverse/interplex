@@ -1,6 +1,6 @@
 context("'network' objects")
 
-skip_if_not_installed("network")
+# skip_if_not_installed("network")
 
 data(flo, package = "network")
 nw_flo <- network::network(flo, directed = FALSE)

@@ -35,7 +35,7 @@ Coercion among the graph/network classes is done using methods from the [{interg
 Install the development version of {interplex} from GitHub as follows:
 
 ```r
-remotes::install_github("corybrunson/interplex")
+remotes::install_github("tdaverse/interplex")
 ```
 
 ### future directions
@@ -46,9 +46,9 @@ A future release should extend coercers from (unannotated) simplicial complexes 
 
 Contributions in any form are more than welcome!
 See the
-[CONTRIBUTING](https://github.com/corybrunson/interplex/blob/main/CONTRIBUTING.md)
+[CONTRIBUTING](https://github.com/tdaverse/interplex/blob/main/CONTRIBUTING.md)
 file for guidance, and please respect the [Code of
-Conduct](https://github.com/corybrunson/interplex/blob/main/CODE_OF_CONDUCT.md).
+Conduct](https://github.com/tdaverse/interplex/blob/main/CODE_OF_CONDUCT.md).
 
 ## acknowledgments
 

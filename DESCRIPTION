@@ -29,10 +29,11 @@ Imports:
     intergraph,
     igraph (>= 0.6-0),
     network (>= 1.4-2),
-    TDA,
     simplextree (>= 0.9.1),
     reticulate
 Suggests:
+    igraphdata,
+    TDA,
     roxygen2,
     rmarkdown,
     testthat

@@ -1,6 +1,6 @@
 context("Python GUDHI simplex trees")
 
-skip_if_not_installed("reticulate")
+# skip_if_not_installed("reticulate")
 
 gd <- reticulate::import("gudhi")
 gd_ex <- gd$SimplexTree()

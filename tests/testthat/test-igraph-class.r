@@ -1,6 +1,6 @@
 context("'igraph' objects")
 
-skip_if_not_installed("igraph")
+# skip_if_not_installed("igraph")
 skip_if_not_installed("igraphdata")
 
 data(karate, package = "igraphdata")
