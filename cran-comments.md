@@ -46,7 +46,7 @@ The remaining components of the NOTE have to do with this submission replacing a
 
 There were no ERRORs or WARNINGs.
 
-There were three NOTEs, varying slightly by platform. One was due to this being a new submission.
+There were four NOTEs from the vanilla check. One was due to this being a new submission.
 
 Another note "Found the following files/directories" and listed "''NULL''".
 Based on [{rhub} issue #560](https://github.com/r-hub/rhub/issues/560), this is likely a problem with R-hub and can be ignored.
@@ -54,6 +54,8 @@ Based on [{rhub} issue #560](https://github.com/r-hub/rhub/issues/560), this is 
 The other "[f]ound the following files/directories:" and listed "'lastMiKTeXException'". A web search led me to [{rhub} issue #503](https://github.com/r-hub/rhub/issues/503), which suggests that the issue can be ignored.
 
 Finally, these checks also flagged the same unrecognized words as the Win-Builder checks.
+
+All of the specified platform checks finished successfully.
 
 ## Version dependencies
 
