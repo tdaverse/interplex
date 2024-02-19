@@ -1,6 +1,8 @@
 ## Test environments
 
-* local OS X install, R 4.2.1
+The following tests were conducted on 2024 Feb 18:
+
+* local OS X install, R 4.2.3
   * `devtools::check()`
   * `devtools::check(env_vars = c('_R_CHECK_DEPENDS_ONLY_' = "true"))`
 * Win-Builder
